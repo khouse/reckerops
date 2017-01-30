@@ -68,6 +68,7 @@ EOF
 
 resource "aws_lambda_function" "randomimage" {
   filename = "lambda/randompng.zip"
+  source_code_hash = "${base64sha256(file("lambda/randompng.zip"))}"
   function_name = "get-random-image"
   handler = "randompng.handler"
   runtime = "python2.7"
