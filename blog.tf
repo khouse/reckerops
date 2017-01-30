@@ -157,10 +157,11 @@ resource "cloudflare_record" "blog_redirect" {
   proxied = true
 }
 
-resource "cloudflare_record" "api" {
-  domain  = "alexrecker.com"
-  name    = "api"
-  value   = "${aws_api_gateway_rest_api.blog.id}.execute-api.${var.aws_region}.amazonaws.com"
-  type    = "CNAME"
-  proxied = true
-}
+# Not used, since AWS requires a cert and all that
+# resource "cloudflare_record" "api" {
+#   domain  = "alexrecker.com"
+#   name    = "api"
+#   value   = "${aws_api_gateway_rest_api.blog.id}.execute-api.${var.aws_region}.amazonaws.com"
+#   type    = "CNAME"
+#   proxied = true
+# }
