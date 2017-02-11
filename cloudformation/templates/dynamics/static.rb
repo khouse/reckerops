@@ -4,6 +4,13 @@ SparkleFormation.dynamic(:static) do |_config={}|
     Type 'String'
   end
 
+  resources.zone do
+    Type 'AWS::Route53::HostedZone'
+    Properties do
+      Name ref!(:domain)
+    end
+  end
+
   resources.bucket do
     Type 'AWS::S3::Bucket'
     Properties do
