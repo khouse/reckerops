@@ -19,7 +19,7 @@ SparkleFormation.dynamic(:static) do |_config={}|
     resources.wwwbucket do
       Type 'AWS::S3::Bucket'
       Properties do
-        BucketName join!('www', :domain)
+        BucketName join!('www.', ref!(:domain))
         AccessControl 'BucketOwnerFullControl'
         WebsiteConfiguration do
           RedirectAllRequestsTo do
