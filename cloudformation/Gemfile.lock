@@ -7,6 +7,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     attribute_struct (0.3.4)
       bogo (>= 0.1.31, < 0.3.0)
     aws-sdk (2.6.50)
@@ -20,27 +22,81 @@ GEM
     bogo (0.2.8)
       hashie
       multi_json
+    bogo-cli (0.1.32)
+      bogo (>= 0.1.6)
+      bogo-config
+      bogo-ui
+      slop (~> 3)
+    bogo-config (0.2.2)
+      attribute_struct
+      bogo (>= 0.1.4, < 1.0)
+      multi_json
+      multi_xml
+    bogo-ui (0.1.22)
+      bogo
+      command_line_reporter
+      paint
     cfndsl (0.12.0)
+    colored (1.2)
     colorize (0.8.1)
+    command_line_reporter (3.3.6)
+      colored (>= 1.2)
     commander (4.4.3)
       highline (~> 1.7.2)
     deep_merge (1.1.1)
     diffy (3.1.0)
+    domain_name (0.5.20161129)
+      unf (>= 0.0.5, < 1.0.0)
     dotgpg (0.7.0)
       gpgme
       thor
     erubis (2.7.0)
     gpgme (2.0.12)
       mini_portile2 (~> 2.1.0)
+    hashdiff (0.2.3)
     hashie (3.5.1)
     highline (1.7.8)
+    http (1.0.4)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 1.0.1)
+      http_parser.rb (~> 0.6.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    http-form_data (1.0.1)
+    http_parser.rb (0.6.0)
     i18n (0.8.0)
     jmespath (1.3.1)
     json (1.8.6)
+    miasma (0.2.38)
+      bogo (>= 0.1.30, < 1.0)
+      http (>= 0.8.12, < 1.1)
+      miasma-aws
+      miasma-open-stack
+      miasma-rackspace
+      multi_json
+      multi_xml
+      xml-simple
+    miasma-aws (0.1.36)
+    miasma-open-stack (0.1.4)
+    miasma-rackspace (0.1.2)
+      miasma-open-stack
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+    multi_xml (0.6.0)
+    net-ssh (4.0.1)
+    paint (2.0.0)
+    public_suffix (2.0.5)
     ruby-progressbar (1.8.1)
+    sfn (1.2.0)
+      bogo-cli (~> 0.1.21)
+      hashdiff (~> 0.2.2)
+      miasma (~> 0.2.27)
+      miasma-aws (~> 0.1.16)
+      net-ssh
+      sparkle_formation (~> 1.1)
+    slop (3.6.0)
     sparkle_formation (1.2.0)
       attribute_struct (>= 0.2.27, < 0.4)
       bogo
@@ -63,11 +119,16 @@ GEM
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
+    xml-simple (1.1.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  sfn
   stack_master
 
 BUNDLED WITH
