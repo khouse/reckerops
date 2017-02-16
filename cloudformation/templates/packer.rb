@@ -26,14 +26,31 @@ SparkleFormation.new(:vpc) do
         Tags tags!({:Name => stack_name!})
       end
     end
+    sg do
+      Type 'AWS::EC2::SecurityGroup'
+      Properties do
+        GroupDescription 'Allow SSH to packer builders'
+        VpcId ref!(:vpc)
+        Tags tags!({:Name => stack_name!})
+        SecurityGroupIngress do
+          IpProtocol 'tcp'
+          FromPort '22'
+          ToPort '22'
+          CidrIp '0.0.0.0/0'
+        end
+      end
+    end
   end
 
   outputs do
-    vpc do
+    vpc_id do
       value ref!(:vpc)
     end
-    subnet do
+    subnet_id do
       value ref!(:subnet)
+    end
+    sg_id do
+      value ref!(:sg)
     end
   end
 end

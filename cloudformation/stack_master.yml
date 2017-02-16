@@ -1,4 +1,4 @@
 stacks:
   us-west-2:
-    packer-vpc:
-      template: vpc.rb
+    packer:
+      template: packer.rb
