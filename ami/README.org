@@ -1,0 +1,6 @@
+#+TITLE: AMI
+
+This is code that I use to build various images.
+
+1. Build the *packer* CloudFormation stack.
+2. Source [[file:aws.env][aws.env]] before running =packer=.

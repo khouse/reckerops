@@ -1,0 +1,7 @@
+#+TITLE: CloudFormation
+
+These are my CloudFormation tools.
+
+1. Ensure you have =bundler= installed.
+2. Run =bundle install=
+3. Build, update, and list stacks with =bundle exec stack_master=
