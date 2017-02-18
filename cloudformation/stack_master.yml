@@ -2,3 +2,5 @@ stacks:
   us-west-2:
     packer:
       template: packer.rb
+    astuary:
+      template: app.rb
