@@ -1,2 +1,2 @@
-cidr: 10.0.0.0/16
-subcidr: 10.0.0.0/24
+VpcCidr: 10.0.0.0/16
+SubnetCidr: 10.0.0.0/24
