@@ -15,9 +15,6 @@ rvm:
 sudo: required
 dist: trusty
 
-before_install:
-  - sudo $TRAVIS_BUILD_DIR/test/setup.sh
-
 script:
   - bundle exec kitchen test ${SUITE}-ubuntu-1404
 
