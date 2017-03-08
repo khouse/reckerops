@@ -5,7 +5,6 @@ driver:
 provisioner:
   name: salt_solo
   formula: bootstrap
-  is_file_root: true
   state_top:
     base:
       '*':
