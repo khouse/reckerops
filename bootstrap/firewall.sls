@@ -7,14 +7,14 @@ firewall-ingress-deny:
     - chain: INPUT
     - policy: DROP
     - require:
-      - pkg: iptables-package
+      - pkg: firewall-package-installed
 
 firewall-egress-allow:
   iptables.set_policy:
     - chain: OUTPUT
     - policy: ACCEPT
     - require:
-      - pkg: iptables-package
+      - pkg: firewall-package-installed
 
 firewall-allow-established:
   iptables.append:
