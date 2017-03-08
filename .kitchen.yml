@@ -5,10 +5,7 @@ driver:
 provisioner:
   name: salt_solo
   formula: bootstrap
-  state_top:
-    base:
-      '*':
-        - bootstrap
+  state_top_from_file: true
 
 platforms:
   - name: ubuntu-14.04
