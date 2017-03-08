@@ -1,4 +1,4 @@
-{% from "locales/map.jinja" import locale with context %}
+{% from "bootstrap/map.jinja" import locale with context %}
 
 locale-preferred-installed:
   locale.present:

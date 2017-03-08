@@ -1,4 +1,4 @@
-{% from "ssh/map.jinja" import ssh with context %}
+{% from "bootstrap/map.jinja" import ssh with context %}
 
 ssh-package:
   pkg.installed:

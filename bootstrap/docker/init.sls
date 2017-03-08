@@ -1,4 +1,4 @@
-{% from "docker/map.jinja" import docker with context %}
+{% from "bootstrap/map.jinja" import docker with context %}
 
 docker-repo-added:
   pkgrepo.managed:
