@@ -13,3 +13,7 @@ end
 describe command('docker -v') do
   its(:exit_status) { should eq 0 }
 end
+
+describe command('docker-compose -v') do
+  its(:exit_status) { should eq 0 }
+end
