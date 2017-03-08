@@ -1,4 +1,6 @@
 #+TITLE: ReckerOps
 #+AUTHOR: Alex Recker
 
+[[https://travis-ci.org/arecker/reckerops][file:https://travis-ci.org/arecker/reckerops.svg?branch=master]]
+
 A repo of all my silly DevOps tools.

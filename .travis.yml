@@ -1,4 +1,6 @@
 language: ruby
+sudo: required
+dist: trusty
 
 env:
   global:
@@ -12,8 +14,7 @@ env:
 rvm:
   - 2.1.7
 
-sudo: required
-dist: trusty
+before_install: sudo usermod -p "`openssl passwd -1 'travis'`" travis
 
 script:
   - bundle exec kitchen test ${SUITE}-ubuntu-1404
