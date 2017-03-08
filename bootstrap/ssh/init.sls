@@ -7,7 +7,7 @@ ssh-package:
 ssh-config:
   file.managed:
     - name: {{ ssh.config }}
-    - source: salt://ssh/files/config.conf
+    - source: salt://bootstrap/ssh/files/config.conf
     - user: root
     - group: root
     - mode: 644
