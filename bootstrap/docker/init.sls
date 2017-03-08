@@ -22,6 +22,7 @@ docker-compose-installed:
 
 docker-running:
   service.running:
+    - name: docker
     - enable: True
     - reload: True
     - watch:
