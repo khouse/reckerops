@@ -1,0 +1,27 @@
+{
+  "variables": {
+    "api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}"
+  },
+
+  "builders": [{
+    "type": "digitalocean",
+    "ssh_username": "root",
+    "api_token": "{{user `api_token`}}",
+    "size": "512mb",
+    "region": "ams3",
+    "image": "debian-8-x64",
+    "droplet_name": "reckerops-strongbadia-{{timestamp}}-builder",
+    "snapshot_name": "reckerops-strongbadia-{{timestamp}}"
+  }],
+
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "apt-get update && apt-get dist-upgrade -y",
+      "apt-get install -y python-pip && pip install --upgrade pip"
+    ]
+  },{
+    "type": "salt-masterless",
+    "local_state_tree": ".."
+  }]
+}
