@@ -8,9 +8,15 @@ docker-repo-added:
     - keyid: {{ docker.repo_keyid }}
     - keyserver: {{ docker.repo_keyserver }}
 
-
 docker-installed:
   pkg.installed:
     - name: docker-engine
     - require:
       - pkgrepo: docker-repo-added
+
+docker-running:
+  service.running:
+    - enable: True
+    - reload: True
+    - watch:
+      - pkg: docker-installed
