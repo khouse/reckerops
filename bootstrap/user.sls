@@ -8,6 +8,7 @@ user-created:
   user.present:
     - name: {{ user.username }}
     - fullname: {{ user.fullname }}
+    - empty_password: True
     - shell: {{ user.shell }}
     - groups: {{ user.groups }}
     - require:
