@@ -1,6 +1,6 @@
 firewall-package-installed:
   pkg.installed:
-    - pkgs: {{ firewall.packages }}
+    - name: iptables
 
 firewall-ingress-deny:
   iptables.set_policy:
