@@ -14,11 +14,16 @@ docker-installed:
     - require:
       - pkgrepo: docker-repo-added
 
+docker-pip-installed:
+  pkg.installed:
+    - name: python-pip
+
 docker-compose-installed:
   pip.installed:
     - name: docker-compose
     - require:
       - pkg: docker-installed
+      - pkg: docker-pip-installed
 
 docker-running:
   service.running:
