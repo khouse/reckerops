@@ -1,6 +1,7 @@
 {
   "variables": {
-    "api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}"
+    "api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}",
+    "user_passwd": "{{env `RECKEROPS_USER_PASSWD`}}"
   },
 
   "builders": [{
@@ -38,6 +39,11 @@
     "type": "shell",
     "inline": [
       "chown -R alex:alex /home/alex/docker"
+    ]
+  }, {
+    "type": "shell",
+    "inline": [
+      "echo \"alex:{{user `user_passwd`}}\" | chpasswd"
     ]
   }]
 
