@@ -4,7 +4,7 @@
 
 hint-placed:
   file.managed:
-    - name: /home/{{ user.username }}/hello.sh
+    - name: /home/{{ user.username }}/certs.sh
     - source: salt://salt/files/certs.sh.jinja
     - user: {{ user.username }}
     - template: jinja
