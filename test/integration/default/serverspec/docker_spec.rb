@@ -2,7 +2,11 @@ require 'serverspec'
 
 set :backend, :exec
 
-describe package('docker-engine') do
+docker_package = {
+  'redhat' => 'docker'
+}.fetch(os[:family], 'docker-engine')
+
+describe package(docker_package) do
   it { should be_installed }
 end
 

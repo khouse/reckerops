@@ -1,5 +1,6 @@
-{% from "bootstrap/map.jinja" import docker with context %}
+{% from "salt/map.jinja" import docker with context %}
 
+{% if docker.repo_entry %}
 docker-repo-added:
   pkgrepo.managed:
     - humanname: Docker
@@ -7,16 +8,24 @@ docker-repo-added:
     - file: {{ docker.repo_file }}
     - keyid: {{ docker.repo_keyid }}
     - keyserver: {{ docker.repo_keyserver }}
+    - require_in:
+      - pkg: docker-installed
+{% endif %}
 
 docker-installed:
   pkg.installed:
-    - name: docker-engine
+    - name: {{ docker.package }}
+
+docker-group-created:
+  group.present:
+    - name: docker
+    - system: True
     - require:
-      - pkgrepo: docker-repo-added
+      - pkg: docker-installed
 
 docker-pip-installed:
   pkg.installed:
-    - name: python-pip
+    - name: {{ docker.pip }}
 
 docker-compose-installed:
   pip.installed:

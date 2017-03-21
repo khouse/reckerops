@@ -1,7 +1,6 @@
 language: ruby
 sudo: required
 dist: trusty
-
 env:
   global:
     - machine_user=travis
@@ -9,19 +8,10 @@ env:
     - machine_port=22
     - KITCHEN_LOCAL_YAML=.kitchen.travis.yml
   matrix:
-  - SUITE=default
-
+    - SUITE=default
 rvm:
   - 2.1.7
-
 before_install: sudo usermod -p "`openssl passwd -1 'travis'`" travis
-
-script:
-  - bundle exec kitchen test ${SUITE}-ubuntu-1404
-
-branches:
-  only:
-    - master
-
+script: bundle exec kitchen test ${SUITE}-ubuntu-1404
 notifications:
   email: false

@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    artifactory (2.7.0)
+    artifactory (2.8.0)
     kitchen-salt (0.0.24)
       test-kitchen (~> 1.4)
     kitchen-vagrant (1.0.2)
@@ -38,4 +38,4 @@ DEPENDENCIES
   test-kitchen
 
 BUNDLED WITH
-   1.14.6
+   1.13.6

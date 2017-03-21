@@ -2,11 +2,15 @@ require 'serverspec'
 
 set :backend, :exec
 
+ssh_service = {
+  'redhat' => 'sshd'
+}.fetch(os[:family], 'ssh')
+
 describe package('openssh-server') do
   it { should be_installed }
 end
 
-describe service('ssh') do
+describe service(ssh_service) do
   it { should be_running }
 end
 

@@ -4,11 +4,24 @@ driver:
 
 provisioner:
   name: salt_solo
-  formula: bootstrap
-  state_top_from_file: true
+  formula: salt
+  state_top:
+    base:
+      '*':
+        - salt
+  pillars:
+    top.sls:
+      base:
+        '*':
+          - everything
+    everything.sls:
+      hosts:
+        example.com: 127.0.0.1:8000
 
 platforms:
+  - name: debian-8.7
   - name: ubuntu-14.04
+  - name: centos-7.2
 
 suites:
-  - name: default
+- name: default

@@ -1,3 +1,5 @@
+{% from "salt/map.jinja" import ssh with context %}
+
 firewall-package-installed:
   pkg.installed:
     - name: iptables
@@ -47,7 +49,7 @@ firewall-allow-ssh:
   iptables.append:
     - chain: INPUT
     - proto: TCP
-    - dport: 22
+    - dport: {{ ssh.port }}
     - jump: ACCEPT
     - require:
       - iptables: firewall-ingress-deny
