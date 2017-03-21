@@ -21,7 +21,7 @@
     ]
   },{
     "type": "salt-masterless",
-    "local_state_tree": "."
+    "local_state_tree": ".."
   },{
     "type": "shell",
     "inline": [
