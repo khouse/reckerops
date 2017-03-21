@@ -5,10 +5,7 @@ driver:
 provisioner:
   name: salt_solo
   formula: salt
-  state_top:
-    base:
-      '*':
-        - salt
+  state_top_from_file: true
   pillars:
     top.sls:
       base:
