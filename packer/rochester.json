@@ -10,8 +10,8 @@
     "size": "512mb",
     "region": "ams3",
     "image": "debian-8-x64",
-    "droplet_name": "rochester-{{timestamp}}-builder",
-    "snapshot_name": "rochester-{{timestamp}}"
+    "droplet_name": "reckerops-rochester-{{timestamp}}-builder",
+    "snapshot_name": "reckerops-rochester-{{timestamp}}"
   }],
   "provisioners": [{
     "type": "shell",
