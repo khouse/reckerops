@@ -1,13 +1,13 @@
 {% from "salt/map.jinja" import docker with context %}
 
-{% if docker.repo_entry %}
+{% if docker.repo %}
 docker-repo-added:
   pkgrepo.managed:
     - humanname: Docker
     - name: {{ docker.repo_entry }}
-    - file: {{ docker.repo_file }}
-    - keyid: {{ docker.repo_keyid }}
-    - keyserver: {{ docker.repo_keyserver }}
+    - file: {{ docker.repo.file }}
+    - keyid: {{ docker.repo.keyid }}
+    - keyserver: {{ docker.repo.keyserver }}
     - require_in:
       - pkg: docker-installed
 {% endif %}
@@ -22,17 +22,6 @@ docker-group-created:
     - system: True
     - require:
       - pkg: docker-installed
-
-docker-pip-installed:
-  pkg.installed:
-    - name: {{ docker.pip }}
-
-docker-compose-installed:
-  pip.installed:
-    - name: docker-compose
-    - require:
-      - pkg: docker-installed
-      - pkg: docker-pip-installed
 
 docker-running:
   service.running:

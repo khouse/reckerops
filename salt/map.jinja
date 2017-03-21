@@ -19,10 +19,11 @@
 {% set docker = salt['grains.filter_by']({
   'default': {
     'package': 'docker-engine',
-    'pip': 'python-pip',
-    'repo_file': '/etc/apt/sources.list.d/docker.list',
-    'repo_keyid': '58118E89F3A912897C070ADBF76221572C52609D',
-    'repo_keyserver': 'hkp://p80.pool.sks-keyservers.net:80'
+    'repo': {
+      'file': '/etc/apt/sources.list.d/docker.list',
+      'keyid': '58118E89F3A912897C070ADBF76221572C52609D',
+      'keyserver': 'hkp://p80.pool.sks-keyservers.net:80'
+    }
   },
   'jessie': {
     'repo_entry': 'deb https://apt.dockerproject.org/repo debian-jessie main',
@@ -32,11 +33,7 @@
   },
   'CentOS Linux 7 (Core)': {
     'package': 'docker',
-    'pip': 'python2-pip',
-    'repo_file': None,
-    'repo_keyid': None,
-    'repo_keyserver': None,
-    'repo_entry': None
+    'repo': None
   }
 }, merge=salt['pillar.get']('ssh:lookup'), base='default', grain='oscodename') %}
 
@@ -65,28 +62,48 @@
   'jessie': {
     'webroot': '/var/www/'
   },
-  'trusty': {
-
-  },
-  'CentOS Linux 7 (Core)': {
-
-  }
 }, merge=salt['pillar.get']('nginx:lookup'), base='default', grain='oscodename') %}
 
 {% set certbot = salt['grains.filter_by']({
   'default': {
     'ppa': None,
-    'repo_entry': None,
+    'repo': None,
     'package': 'certbot',
   },
   'jessie': {
-    'repo_entry': 'deb http://ftp.debian.org/debian jessie-backports main',
-    'repo_file': '/etc/apt/sources.list.d/backports.list',
+    'repo': {
+      'entry': 'deb http://ftp.debian.org/debian jessie-backports main',
+      'file': '/etc/apt/sources.list.d/backports.list',
+    }
   },
   'trusty': {
     'ppa': 'certbot/certbot'
   },
-  'CentOS Linux 7 (Core)': {
-  }
 }, merge=salt['pillar.get']('certbot:lookup'), base='default', grain='oscodename') %}
+
+{% set python = salt['grains.filter_by']({
+  'default': {
+    'pip_packages': [
+      'awscli',
+      'boto3',
+      'cloudflare',
+      'docker-compose',
+      'pyopenssl',
+      'requests'
+    ],
+    'pkgs_install': [
+      'python',
+      'python-dev',
+      'python-setuptools'
+    ],
+    'pkgs_remove': [
+      'python-pip',
+      'python-pip-whl'
+    ],
+    'pip_version': '9.0.1'
+  },
+  'CentOS Linux 7 (Core)': {
+
+  }
+}, merge=salt['pillar.get']('python:lookup'), base='default', grain='oscodename') %}
 

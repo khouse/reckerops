@@ -1,12 +1,12 @@
 {% from "salt/map.jinja" import user with context %}
 {% from "salt/map.jinja" import nginx with context %}
 {% set domains = salt['pillar.get']('hosts', {}).keys() %}
-
-hint-placed:
+bootstrap-script-generated:
   file.managed:
-    - name: /home/{{ user.username }}/certs.sh
-    - source: salt://salt/files/certs.sh.jinja
-    - user: {{ user.username }}
+    - name: /usr/local/bin/reckerops-bootstrap
+    - source: salt://salt/files/bootstrap.jinja
+    - user: root
+    - mode: 700
     - template: jinja
     - context:
         domains: {{ domains }}

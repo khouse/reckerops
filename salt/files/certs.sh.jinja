@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-# certs.sh
-# Run this script as root, you dilweed.
-
-## First, create the certs for the domains
-{% for domain in domains %}
-# certbot certonly --webroot -w {{ webroot }}default -d {{ domain }} --agree-tos -m {{ email }}
-{% endfor %}

@@ -78,13 +78,13 @@ http {
         server_name _;
         root {{ webroot }}default;
     }
-    {% for domain, upstream in hosts.iteritems() %}
-    # HTTP Redirect & ACME Challenge for {{ domain }}
+    {% for host, info in hosts.iteritems() %}
+    # HTTP Redirect & ACME Challenge for {{ host }}
     #
     server {
         listen 0.0.0.0:80;
         listen [::]:80;
-        server_name {{ domain }};
+        server_name {{ host }};
         root {{ webroot }}default;
 
         location ~ /.well-known {
@@ -97,19 +97,18 @@ http {
         }
     }
 
-    # HTTPS for {{ domain }}
+    # HTTPS for {{ host }}
     #
     server {
         listen 0.0.0.0:443 ssl;
         listen [::]:443 ssl;
-        server_name {{ domain }};
+        server_name {{ host }};
 
-        # Uncomment these once certs have been created
-        # ssl_certificate /etc/letsencrypt/live/{{ domain }}/fullchain.pem;
-        # ssl_certificate_key /etc/letsencrypt/live/{{ domain }}/privkey.pem;
+        #-RECKEROPS-BOOTSTRAP-UNCOMMENT-#ssl_certificate /etc/letsencrypt/live/{{ host }}/fullchain.pem;
+        #-RECKEROPS-BOOTSTRAP-UNCOMMENT-#ssl_certificate_key /etc/letsencrypt/live/{{ host }}/privkey.pem;
 
         location / {
-            proxy_pass http://{{ upstream }};
+            proxy_pass {{ info['upstream'] }};
         }
     }
     {% endfor %}
