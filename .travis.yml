@@ -10,5 +10,6 @@ env:
   - COMMAND='kitchen test ubuntu'
   - COMMAND='kitchen test centos'
 script: bundle exec $COMMAND
+after_script: bundle exec kitchen destroy
 notifications:
   email: false
