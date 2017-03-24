@@ -1,7 +1,8 @@
 language: ruby
-before_install: echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY > ~/.
+before_install: echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY > ~/.ssh/reckerops-build.pem
 env:
   - COMMAND='rubocop'
+  - COMMAND='kitchen test debian'
 script: bundle exec $COMMAND
 notifications:
   email: false
