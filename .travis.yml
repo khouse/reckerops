@@ -3,7 +3,6 @@ before_install:
   - echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY > $HOME/.ssh/reckerops-build.pem
   - gem update --system && gem update bundler
 env:
-  - HOME='$TRAVIS_BUILD_DIR/..'
   - COMMAND='rubocop'
   - COMMAND='kitchen test debian -l debug'
   - COMMAND='kitchen test ubuntu'
