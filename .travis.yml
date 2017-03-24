@@ -5,6 +5,7 @@ before_install:
 env:
   - COMMAND='rubocop'
   - COMMAND='kitchen test debian'
+  - COMMAND='kitchen test ubuntu'
 script: bundle exec $COMMAND
 notifications:
   email: false
