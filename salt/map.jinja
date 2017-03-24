@@ -1,6 +1,9 @@
 {% set locale = salt['grains.filter_by']({
   'default': {
-    'preferred': 'en_US.UTF-8 UTF-8'
+    'preferred': 'en_US.UTF-8',
+    'packages': [
+      'locales',
+    ]
   }
 }, merge=salt['pillar.get']('locale:lookup'), base='default') %}
 

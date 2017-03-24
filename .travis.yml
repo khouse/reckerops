@@ -6,8 +6,9 @@ before_install:
   - gem update --system && gem update bundler
 env:
   - COMMAND='rubocop'
-  - COMMAND='kitchen test debian -l debug'
-  # - COMMAND='kitchen test ubuntu -l debug'
+  - COMMAND='kitchen test debian'
+  - COMMAND='kitchen test ubuntu'
+  - COMMAND='kitchen test centos'
 script: bundle exec $COMMAND
 notifications:
   email: false
