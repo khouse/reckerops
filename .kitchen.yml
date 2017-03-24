@@ -7,7 +7,7 @@ driver:
   aws_ssh_key_id: reckerops-build
 
 transport:
-  ssh_key: mkdir -p ~/.ssh && cat $RECKEROPS_BUILD_SSH_PRIVATE_KEY > ~/.ssh/reckerops-build.pem && chmod 066 ~/.ssh/reckerops-build.pem
+  ssh_key: ~/.ssh/reckerops-build.pem
 
 provisioner:
   name: salt_solo
