@@ -1,6 +1,6 @@
 language: ruby
 before_install:
-  - mkdir /home/travis/.ssh && echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY > /home/travis/.ssh/reckerops-build.pem
+  - echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY > /home/travis/.ssh/reckerops-build.pem
   - gem update --system && gem update bundler
 env:
   global:
