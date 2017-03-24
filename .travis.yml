@@ -1,7 +1,7 @@
 language: ruby
 before_install:
   - echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY > ~/.ssh/reckerops-build.pem
-  - gem update --system
+  - gem update --system && gem update bundler
 env:
   - COMMAND='rubocop'
   - COMMAND='kitchen test debian'
