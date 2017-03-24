@@ -1,4 +1,6 @@
 stacks:
   us-west-2:
+    reckerops-build:
+      template: build.rb
     reckerops-vault:
       template: vault.rb
