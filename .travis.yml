@@ -1,11 +1,14 @@
 language: ruby
 before_install:
-  - echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY > $HOME/.ssh/reckerops-build.pem
+  - mkdir /home/travis/.ssh && echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY > /home/travis/.ssh/reckerops-build.pem
   - gem update --system && gem update bundler
 env:
-  - COMMAND='rubocop'
-  - COMMAND='kitchen test debian -l debug'
-  - COMMAND='kitchen test ubuntu'
+  global:
+    - KITCHEN_LOCAL_YAML=.kitchen.travis.yml
+  matrix:
+    - COMMAND='rubocop'
+    - COMMAND='kitchen test debian'
+    - COMMAND='kitchen test ubuntu'
 script: bundle exec $COMMAND
 notifications:
   email: false
