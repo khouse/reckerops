@@ -7,8 +7,8 @@ env:
     - KITCHEN_LOCAL_YAML=.kitchen.travis.yml
   matrix:
     - COMMAND='rubocop'
-    - COMMAND='kitchen test debian'
-    - COMMAND='kitchen test ubuntu'
+    - COMMAND='kitchen test debian -l debug'
+    - COMMAND='kitchen test ubuntu -l debug'
 script: bundle exec $COMMAND
 notifications:
   email: false
