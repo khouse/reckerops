@@ -1,14 +1,6 @@
+# frozen_string_literal: true
+# rubocop:disable BlockLength
 SparkleFormation.new(:build) do
-  policy = {
-    Version: '2012-10-17',
-    Statement: [
-      {
-        Effect: 'Allow',
-        Action: 'ec2:*',
-        Resource: '*'
-      }
-    ]
-  }
   parameters.vpc_cidr do
     Type 'String'
     Description 'CIDR Block for the VPC'
@@ -19,16 +11,12 @@ SparkleFormation.new(:build) do
     Description 'CIDR Block for the Subnet'
     Default '10.0.0.0/16'
   end
-  resources.user do
-    Type 'AWS::IAM::User'
-    Properties do
-      UserName join!(stack_name!, '-', region!)
-      Policies [
-        PolicyName: 'BuildEC2Policy',
-        PolicyDocument: policy
-      ]
-    end
-  end
+  dynamic!(
+    :user, :user,
+    user_name: join!(stack_name!, '-', region!),
+    policy_name: 'BuildEC2Policy', effect: 'Allow',
+    action: 'ec2:*', resource: '*'
+  )
   resources.vpc do
     Type 'AWS::EC2::VPC'
     Properties do

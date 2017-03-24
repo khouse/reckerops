@@ -1,6 +1,13 @@
 ---
 driver:
-  name: vagrant
+  name: ec2
+  region: us-west-2
+  subnet_id: subnet-fb283ea3
+  security_group_ids: [sg-49b2a831]
+  aws_ssh_key_id: reckerops-build
+
+transport:
+  ssh_key: mkdir -p ~/.ssh && cat $RECKEROPS_BUILD_SSH_PRIVATE_KEY > ~/.ssh/reckerops-build.pem && chmod 066 ~/.ssh/reckerops-build.pem
 
 provisioner:
   name: salt_solo
@@ -17,9 +24,7 @@ provisioner:
           upstream: http://127.0.0.1:8000
 
 platforms:
-  - name: debian-8.7
-  - name: ubuntu-14.04
-  - name: centos-7.2
+  - name: debian
 
 suites:
-- name: default
+  - name: default

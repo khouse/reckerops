@@ -1,33 +1,22 @@
+# frozen_string_literal: true
+# rubocop:disable BlockLength
 SparkleFormation.new(:vault) do
-  policy = {
-    Version: "2012-10-17",
-    Statement: [
-      {
-        Effect: "Allow",
-        Action: [
-          "codecommit:BatchGetRepositories",
-          "codecommit:Get*",
-          "codecommit:List*",
-          "codecommit:Put*",
-          "codecommit:Test*",
-          "codecommit:Update*",
-          "codecommit:GitPull",
-          "codecommit:GitPush"
-        ],
-        Resource: attr!(:repository, :arn)
-      }
+  dynamic!(
+    :user, :user,
+    user_name: join!(stack_name!, '-', region!),
+    policy_name: 'VaultRepoPolicy', effect: 'Allow',
+    resource: attr!(:repository, :arn),
+    action: [
+      'codecommit:BatchGetRepositories',
+      'codecommit:Get*',
+      'codecommit:List*',
+      'codecommit:Put*',
+      'codecommit:Test*',
+      'codecommit:Update*',
+      'codecommit:GitPull',
+      'codecommit:GitPush'
     ]
-  }
-  resources.user do
-    Type 'AWS::IAM::User'
-    Properties do
-      UserName join!(stack_name!, '-', region!)
-      Policies [
-        PolicyName: 'VaultRepoPolicy',
-        PolicyDocument: policy
-      ]
-    end
-  end
+  )
   resources.topic do
     Type 'AWS::SNS::Topic'
     Properties do
