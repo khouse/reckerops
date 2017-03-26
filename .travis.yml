@@ -11,9 +11,12 @@ before_install:
   - echo '-----END RSA PRIVATE KEY-----' >> ~/.ssh/reckerops-build.pem
 
 env:
-  - COMMAND="bundle exec rubocop"
-  - COMMAND="pep8 ."
-  - COMMAND='bundle exec kitchen test rochester'
+  global:
+    - KITCHEN_LOCAL_YAML=".kitchen.travis.yml"
+  matrix:
+    - COMMAND="bundle exec rubocop"
+    - COMMAND="pep8 ."
+    - COMMAND='bundle exec kitchen test rochester'
 
 script: $COMMAND
 
