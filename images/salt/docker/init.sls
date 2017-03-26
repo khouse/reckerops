@@ -1,4 +1,4 @@
-{% from "salt/map.jinja" import docker with context %}
+{% from "docker/map.jinja" import docker with context %}
 
 {% if docker.repo %}
 docker-repo-added:

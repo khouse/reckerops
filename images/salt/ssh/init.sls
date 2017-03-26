@@ -1,4 +1,4 @@
-{% from "salt/map.jinja" import ssh with context %}
+{% from "ssh/map.jinja" import ssh with context %}
 
 ssh-installed:
   pkg.installed:
@@ -7,7 +7,7 @@ ssh-installed:
 ssh-configured:
   file.managed:
     - name: {{ ssh.config }}
-    - source: salt://salt/files/sshd_config.jinja
+    - source: salt://ssh/sshd_config.jinja
     - template: jinja
     - context:
         port: {{ ssh.port }}

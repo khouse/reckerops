@@ -1,16 +1,25 @@
 language: ruby
-cache: bundler
+
+addons:
+  apt:
+    packages:
+      - pep8
+
 before_install:
   - echo '-----BEGIN RSA PRIVATE KEY-----' > ~/.ssh/reckerops-build.pem
   - echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY | fold -w 72 >> ~/.ssh/reckerops-build.pem
   - echo '-----END RSA PRIVATE KEY-----' >> ~/.ssh/reckerops-build.pem
-  - gem update --system && gem update bundler
+
 env:
-  - COMMAND='rubocop'
-  - COMMAND='kitchen test debian'
-  - COMMAND='kitchen test ubuntu'
-  - COMMAND='kitchen test centos'
-script: bundle exec $COMMAND
-after_script: bundle exec kitchen destroy
+  - COMMAND="bundle exec rubocop"
+  - COMMAND="pep8 ."
+  - COMMAND='bundle exec kitchen test rochester'
+
+script: $COMMAND
+
 notifications:
   email: false
+
+branches:
+  only:
+    - master

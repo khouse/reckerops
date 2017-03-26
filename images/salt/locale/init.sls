@@ -1,4 +1,5 @@
-{% from "salt/map.jinja" import locale with context %}
+{% from "locale/map.jinja" import locale with context %}
+
 locale-packages-installed:
   pkg.installed:
     - pkgs: {{ locale.packages }}

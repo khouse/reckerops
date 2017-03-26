@@ -1,17 +1,49 @@
+GIT
+  remote: https://github.com/arecker/kitchen-salt.git
+  revision: 1bcec52ff8fe04a2fe0318396f63d034d0362121
+  specs:
+    kitchen-salt (0.0.3)
+      test-kitchen
+
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (4.2.8)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
     artifactory (2.8.1)
     ast (2.3.0)
-    aws-sdk (2.8.11)
-      aws-sdk-resources (= 2.8.11)
-    aws-sdk-core (2.8.11)
+    attribute_struct (0.3.4)
+      bogo (>= 0.1.31, < 0.3.0)
+    aws-sdk (2.6.50)
+      aws-sdk-resources (= 2.6.50)
+    aws-sdk-core (2.6.50)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.8.11)
-      aws-sdk-core (= 2.8.11)
+    aws-sdk-resources (2.6.50)
+      aws-sdk-core (= 2.6.50)
     aws-sigv4 (1.0.0)
+    bogo (0.2.8)
+      hashie
+      multi_json
+    cfndsl (0.12.3)
+    colorize (0.8.1)
+    commander (4.4.3)
+      highline (~> 1.7.2)
+    deep_merge (1.1.1)
+    diffy (3.2.0)
+    dotgpg (0.7.0)
+      gpgme
+      thor
+    erubis (2.7.0)
     excon (0.55.0)
+    gpgme (2.0.12)
+      mini_portile2 (~> 2.1.0)
+    hashie (3.5.5)
+    highline (1.7.8)
+    i18n (0.8.1)
     jmespath (1.3.1)
     kitchen-ec2 (1.3.2)
       aws-sdk (~> 2)
@@ -19,8 +51,8 @@ GEM
       multi_json
       retryable (~> 2.0)
       test-kitchen (~> 1.4, >= 1.4.1)
-    kitchen-salt (0.0.24)
-      test-kitchen (~> 1.4)
+    mini_portile2 (2.1.0)
+    minitest (5.10.1)
     mixlib-install (2.1.12)
       artifactory
       mixlib-shellout
@@ -39,7 +71,7 @@ GEM
     powerpack (0.1.1)
     rainbow (2.1.0)
     retryable (2.0.4)
-    rubocop (0.47.1)
+    rubocop (0.48.0)
       parser (>= 2.3.3.1, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
@@ -47,6 +79,24 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
     safe_yaml (1.0.4)
+    sparkle_formation (1.2.0)
+      attribute_struct (>= 0.2.27, < 0.4)
+      bogo
+      multi_json
+    stack_master (0.13.0)
+      activesupport (~> 4.2)
+      aws-sdk (~> 2.6.26)
+      cfndsl
+      colorize
+      commander
+      deep_merge
+      diffy
+      dotgpg
+      erubis
+      ruby-progressbar
+      sparkle_formation (~> 1.1)
+      table_print
+    table_print (1.5.6)
     test-kitchen (1.16.0)
       mixlib-install (>= 1.2, < 3.0)
       mixlib-shellout (>= 1.2, < 3.0)
@@ -56,6 +106,9 @@ GEM
       safe_yaml (~> 1.0)
       thor (~> 0.19, < 0.19.2)
     thor (0.19.1)
+    thread_safe (0.3.6)
+    tzinfo (1.2.3)
+      thread_safe (~> 0.1)
     unicode-display_width (1.1.3)
 
 PLATFORMS
@@ -63,10 +116,10 @@ PLATFORMS
 
 DEPENDENCIES
   kitchen-ec2
-  kitchen-salt
+  kitchen-salt!
   rainbow (>= 2.1.0, < 2.2.0)
   rubocop
-  test-kitchen
+  stack_master
 
 BUNDLED WITH
    1.14.6

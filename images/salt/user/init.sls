@@ -1,4 +1,4 @@
-{% from "salt/map.jinja" import user with context %}
+{% from "user/map.jinja" import user with context %}
 
 user-packages-installed:
   pkg.installed:

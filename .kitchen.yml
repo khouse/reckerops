@@ -7,26 +7,18 @@ driver:
   aws_ssh_key_id: reckerops-build
 
 transport:
-  ssh_key: ~/.ssh/reckerops-build.pem
+  ssh_key: $HOME/.ssh/reckerops-build.pem
 
 provisioner:
-  name: salt_solo
-  formula: salt
-  state_top_from_file: true
-  pillars:
-    top.sls:
-      base:
-        '*':
-          - everything
-    everything.sls:
-      hosts:
-        example.com:
-          upstream: http://127.0.0.1:8000
+  name: salt
+  local_state_tree: images/salt
+  local_pillar_roots: images/pillar
+  state_output: mixed
 
 platforms:
-  - name: debian
-  - name: ubuntu-14.04
-  - name: centos-7
+  - name: debian-8.7
 
 suites:
-  - name: default
+- name: rochester
+  provisioner:
+    minion_config: images/configs/rochester.yml

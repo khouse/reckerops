@@ -1,4 +1,4 @@
-{% from "salt/map.jinja" import ssh with context %}
+{% from "firewall/map.jinja" import firewall with context %}
 
 firewall-package-installed:
   pkg.installed:
@@ -39,7 +39,7 @@ firewall-allow-local:
 firewall-allow-docker:
   iptables.append:
     - chain: INPUT
-    - source: 172.17.0.0/16
+    - source: {{ firewall.docker_range }}
     - jump: ACCEPT
     - require:
       - iptables: firewall-ingress-deny
@@ -49,7 +49,7 @@ firewall-allow-ssh:
   iptables.append:
     - chain: INPUT
     - proto: TCP
-    - dport: {{ ssh.port }}
+    - dport: {{ firewall.ssh_port }}
     - jump: ACCEPT
     - require:
       - iptables: firewall-ingress-deny
@@ -59,7 +59,7 @@ firewall-allow-http:
   iptables.append:
     - chain: INPUT
     - proto: TCP
-    - dport: 80
+    - dport: {{ firewall.http_port }}
     - jump: ACCEPT
     - require:
       - iptables: firewall-ingress-deny
@@ -69,7 +69,7 @@ firewall-allow-https:
   iptables.append:
     - chain: INPUT
     - proto: TCP
-    - dport: 443
+    - dport: {{ firewall.https_port }}
     - jump: ACCEPT
     - require:
       - iptables: firewall-ingress-deny
