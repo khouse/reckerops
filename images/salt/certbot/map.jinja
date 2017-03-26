@@ -1,0 +1,16 @@
+{% set certbot = salt['grains.filter_by']({
+  'default': {
+    'ppa': None,
+    'repo': None,
+    'package': 'certbot',
+  },
+  'jessie': {
+    'repo': {
+      'entry': 'deb http://ftp.debian.org/debian jessie-backports main',
+      'file': '/etc/apt/sources.list.d/backports.list',
+    }
+  },
+  'trusty': {
+    'ppa': 'certbot/certbot'
+  },
+}, merge=salt['pillar.get']('certbot:lookup'), base='default', grain='oscodename') %}

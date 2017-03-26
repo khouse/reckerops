@@ -6,4 +6,5 @@ base:
     - python
     - docker
     - nginx
+    - certbot
     - user
