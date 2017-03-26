@@ -16,7 +16,7 @@ provisioner:
   state_output: mixed
 
 platforms:
-  - name: debian-8.7
+  - name: debian
 
 suites:
 - name: rochester
