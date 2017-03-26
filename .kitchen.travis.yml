@@ -1,0 +1,2 @@
+transport:
+  ssh_key: /home/travis/.ssh/reckerops-build.pem

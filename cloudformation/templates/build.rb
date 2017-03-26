@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # rubocop:disable BlockLength
 SparkleFormation.new(:build) do
   parameters.vpc_cidr do
