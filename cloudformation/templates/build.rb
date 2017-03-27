@@ -18,8 +18,9 @@ SparkleFormation.new(:build) do
     user_name: join!(stack_name!, '-', region!),
     policy_name: 'BuildEC2Policy', effect: 'Allow',
     resource: '*', action: [
+      'cloudformation:*',
       'ec2:*',
-      'cloudformation:*'
+      'sns:*'
     ]
   )
   resources.vpc do
@@ -88,13 +89,13 @@ SparkleFormation.new(:build) do
     end
   end
 
-  resources.topic do
-    Type 'AWS::SNS::Topic'
-    Properties do
-      DisplayName stack_name!
-      TopicName build
-    end
-  end
+  # resources.topic do
+  #   Type 'AWS::SNS::Topic'
+  #   Properties do
+  #     DisplayName stack_name!
+  #     TopicName build
+  #   end
+  # end
 
   outputs.region do
     Description 'Region'
