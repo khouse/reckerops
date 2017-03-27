@@ -11,14 +11,14 @@ env:
   global:
     - KITCHEN_LOCAL_YAML=".kitchen.travis.yml"
   matrix:
-    - COMMAND="bundle exec rubocop"
-    - COMMAND="pep8 ."
-    - BUILD_IMAGE="rochester" COMMAND="bundle exec kitchen test $BUILD_IMAGE"
+    - COMMAND="scripts/travis-lint-ruby.sh"
+    - COMMAND="scripts/travis-lint-python.sh"
+    - COMMAND="scripts/travis-kitchen.sh" MACHINE="rochester"
     - COMMAND="scripts/travis-cloudformation.sh"
 
 script: $COMMAND
 
-after_script: cd $TRAVIS_BUILD_DIR && bundle exec kitchen destroy
+after_script: scripts/travis-cleanup.sh
 
 notifications:
   email: false
