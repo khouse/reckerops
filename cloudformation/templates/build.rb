@@ -89,13 +89,13 @@ SparkleFormation.new(:build) do
     end
   end
 
-  # resources.topic do
-  #   Type 'AWS::SNS::Topic'
-  #   Properties do
-  #     DisplayName stack_name!
-  #     TopicName build
-  #   end
-  # end
+  resources.topic do
+    Type 'AWS::SNS::Topic'
+    Properties do
+      DisplayName stack_name!
+      TopicName build
+    end
+  end
 
   outputs.region do
     Description 'Region'
