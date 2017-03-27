@@ -18,6 +18,8 @@ env:
 
 script: $COMMAND
 
+after_script: bundle exec kitchen destroy
+
 notifications:
   email: false
 
