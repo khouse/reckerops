@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-cd ..e
-success=$(bundle exec kitchen converge $1)
+cd ..
+bundle exec kitchen converge $1
+success=$?
 bundle exec kitchen destroy $1
 exit $success
