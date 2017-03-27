@@ -1,6 +1,6 @@
 {% set nginx = salt['grains.filter_by']({
   'default': {
-    'package': 'nginx',
+    'packages': ['nginx', 'nginx-extras'],
     'webroot': '/usr/share/nginx/'
   },
   'jessie': {

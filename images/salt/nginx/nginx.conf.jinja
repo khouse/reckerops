@@ -75,8 +75,16 @@ http {
     server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
+
 	server_name _;
 	root {{ webroot }}default;
+
+        # Status for datadog
+        location /nginx_status {
+            allow 127.0.0.1;
+            deny all;
+            stub_status on;
+        }
     }
     {% for host, info in hosts.iteritems() %}
     # HTTP Redirect & ACME Challenge for {{ host }}
@@ -96,7 +104,16 @@ http {
 	    return 301 https://$host$request_uri;
 	}
     }
-
+    {% if info.get('www', True) %}
+    # WWW Redirect for {{ host }}
+    #
+    server {
+        listen 80;
+        listen 443;
+        server_name www.{{ host }};
+	return 301 https://{{ host }}$request_uri;
+    }
+    {% endif %}
     # HTTPS for {{ host }}
     #
     server {

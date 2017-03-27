@@ -2,7 +2,7 @@
 
 nginx-installed:
   pkg.installed:
-    - name: {{ nginx.package }}
+    - pkgs: {{ nginx.packages }}
 
 nginx-defaulted:
   file.managed:
