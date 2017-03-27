@@ -16,7 +16,10 @@ SparkleFormation.new(:build) do
     :user, :user,
     user_name: join!(stack_name!, '-', region!),
     policy_name: 'BuildEC2Policy', effect: 'Allow',
-    action: 'ec2:*', resource: '*'
+    resource: '*', action: [
+      'ec2:*',
+      'cloudformation:*'
+    ]
   )
   resources.vpc do
     Type 'AWS::EC2::VPC'
