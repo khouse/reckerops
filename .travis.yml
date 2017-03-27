@@ -17,6 +17,7 @@ env:
     - COMMAND="bundle exec rubocop"
     - COMMAND="pep8 ."
     - COMMAND='bundle exec kitchen test rochester'
+    - COMMAND="cd cloudformation && bundle exec stack_master validate"
 
 script: $COMMAND
 
