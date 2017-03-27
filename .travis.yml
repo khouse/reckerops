@@ -18,7 +18,7 @@ env:
 
 script: $COMMAND
 
-after_script: bundle exec kitchen destroy
+after_script: cd $TRAVIS_BUILD_DIR && bundle exec kitchen destroy
 
 notifications:
   email: false
