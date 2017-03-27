@@ -11,6 +11,7 @@ ssh-configured:
     - template: jinja
     - context:
         port: {{ ssh.port }}
+        root_login: {{ ssh.root_login }}
     - user: root
     - group: root
     - mode: 644

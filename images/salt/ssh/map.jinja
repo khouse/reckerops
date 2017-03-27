@@ -5,7 +5,11 @@
     'config': '/etc/ssh/sshd_config',
     'port': 22
   },
-  'Ubuntu': {
-    'service': 'ssh'
+  'jessie': {
+    'root_login': 'yes',
+  },
+  'trusty': {
+    'service': 'ssh',
+    'root_login': 'no',
   }
-}, merge=salt['pillar.get']('ssh:lookup'), base='default', grain='os') %}
+}, merge=salt['pillar.get']('ssh:lookup'), base='default', grain='oscodename') %}
