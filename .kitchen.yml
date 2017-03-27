@@ -7,7 +7,7 @@ driver:
   aws_ssh_key_id: reckerops-build
 
 transport:
-  ssh_key: $HOME/.ssh/reckerops-build.pem
+  ssh_key: ~/.ssh/reckerops-build.pem
 
 provisioner:
   name: salt

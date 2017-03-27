@@ -1,2 +1,7 @@
 base:
-  rochester: [ rochester ]
+
+  '*':
+    - global
+
+  rochester:
+    - rochester

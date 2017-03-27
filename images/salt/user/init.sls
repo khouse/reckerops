@@ -8,7 +8,7 @@ user-created:
   user.present:
     - name: {{ user.username }}
     - fullname: {{ user.fullname }}
-    - empty_password: True
+    - password: {{ pillar['password'] }}
     - shell: {{ user.shell }}
     - groups: {{ user.groups }}
     - require:

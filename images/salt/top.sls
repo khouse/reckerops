@@ -2,7 +2,7 @@ base:
   '*':
     - locale
     - firewall
-    - ssh
+    # - ssh
     - python
     - docker
     - nginx
