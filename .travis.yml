@@ -14,7 +14,7 @@ env:
     - COMMAND="bundle exec rubocop"
     - COMMAND="pep8 ."
     - BUILD_IMAGE="rochester" COMMAND="bundle exec kitchen test $BUILD_IMAGE"
-    - COMMAND="cd cloudformation && bundle exec stack_master validate"
+    - COMMAND="cd $TRAVIS_BUILD_DIR/cloudformation && bundle exec stack_master validate"
 
 script: $COMMAND
 
