@@ -5,19 +5,16 @@ addons:
     packages:
       - pep8
 
-before_install:
-  - echo '-----BEGIN RSA PRIVATE KEY-----' > ~/.ssh/reckerops-build.pem
-  - echo $RECKEROPS_BUILD_SSH_PRIVATE_KEY | fold -w 72 >> ~/.ssh/reckerops-build.pem
-  - echo '-----END RSA PRIVATE KEY-----' >> ~/.ssh/reckerops-build.pem
+before_install: scripts/travis-private-key.sh
 
 env:
   global:
     - KITCHEN_LOCAL_YAML=".kitchen.travis.yml"
   matrix:
-    - COMMAND="bundle exec rubocop"
-    - COMMAND="pep8 ."
-    - COMMAND='bundle exec kitchen test rochester'
-    - COMMAND="cd cloudformation && bundle exec stack_master validate"
+    - COMMAND="scripts/travis-lint-ruby.sh"
+    - COMMAND="scripts/travis-lint-python.sh"
+    - COMMAND="scripts/travis-kitchen.sh rochester"
+    - COMMAND="scripts/travis-cloudformation.sh"
 
 script: $COMMAND
 
