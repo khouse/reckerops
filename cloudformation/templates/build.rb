@@ -2,6 +2,7 @@
 
 # rubocop:disable BlockLength
 SparkleFormation.new(:build) do
+  Description 'Basic public ec2 network for kitchen builds'
   parameters.vpc_cidr do
     Type 'String'
     Description 'CIDR Block for the VPC'
