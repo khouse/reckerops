@@ -11,10 +11,10 @@ env:
   global:
     - KITCHEN_LOCAL_YAML=".kitchen.travis.yml"
   matrix:
-    - COMMAND="scripts/travis-lint-ruby.sh"
-    - COMMAND="scripts/travis-lint-python.sh"
-    - COMMAND="scripts/travis-kitchen.sh rochester"
-    - COMMAND="scripts/travis-cloudformation.sh"
+    - COMMAND="bundle exec rubocop"
+    - COMMAND="pep8 ."
+    - BUILD_IMAGE="rochester" COMMAND="bundle exec kitchen test $BUILD_IMAGE"
+    - COMMAND="cd cloudformation && bundle exec stack_master validate"
 
 script: $COMMAND
 
