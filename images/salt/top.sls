@@ -7,4 +7,5 @@ base:
     - docker
     - nginx
     - certbot
+    - datadog
     - user
