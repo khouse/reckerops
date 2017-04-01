@@ -2,7 +2,6 @@
 
 # rubocop:disable BlockLength
 SparkleFormation.new(:vault) do
-  Description 'A private password git repository'
   dynamic!(
     :user, :user,
     user_name: join!(stack_name!, '-', region!),

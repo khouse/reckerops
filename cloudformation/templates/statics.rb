@@ -14,6 +14,21 @@ SparkleFormation.new(:statics) do
     end
   end
 
+  resources.astuary_bucket_policy do
+    Type 'AWS::S3::BucketPolicy'
+    Properties do
+      Bucket ref!(:astuary_bucket)
+      PolicyDocument do
+        Statement [
+          Principal: '*',
+          Action: ['s3:GetObject'],
+          Effect: 'Allow',
+          Resource: 'arn:aws:s3:::astuaryart.com/*'
+        ]
+      end
+    end
+  end
+
   resources.astuary_bucket_redirect do
     Type 'AWS::S3::Bucket'
     Properties do
@@ -27,8 +42,18 @@ SparkleFormation.new(:statics) do
     end
   end
 
-  outputs.astuary_url do
-    Description 'URL for Astuary Art'
-    Value attr!(:astuary_bucket, 'WebsiteURL')
+  resources.astuary_bucket_redirect_policy do
+    Type 'AWS::S3::BucketPolicy'
+    Properties do
+      Bucket ref!(:astuary_bucket_redirect)
+      PolicyDocument do
+        Statement [
+          Principal: '*',
+          Action: ['s3:GetObject'],
+          Effect: 'Allow',
+          Resource: 'arn:aws:s3:::www.astuaryart.com/*'
+        ]
+      end
+    end
   end
 end
