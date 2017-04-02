@@ -92,7 +92,7 @@ http {
     server {
 	listen 0.0.0.0:80;
 	listen [::]:80;
-	server_name {{ host }};
+	server_name {{ info['hostname'] }};
 	root {{ webroot }}default;
 
 	location ~ /.well-known {
@@ -104,14 +104,14 @@ http {
 	    return 301 https://$host$request_uri;
 	}
     }
-    {% if info.get('www', True) %}
+    {% if info.get('redirect_www', False) %}
     # WWW Redirect for {{ host }}
     #
     server {
         listen 80;
         listen 443;
-        server_name www.{{ host }};
-	return 301 https://{{ host }}$request_uri;
+        server_name www.{{ info['hostname'] }};
+	return 301 https://{{ info['hostname'] }}$request_uri;
     }
     {% endif %}
     # HTTPS for {{ host }}
@@ -119,10 +119,10 @@ http {
     server {
 	listen 0.0.0.0:443 ssl;
 	listen [::]:443 ssl;
-	server_name {{ host }};
+	server_name {{ info['hostname'] }};
 
-	#-RECKEROPS-BOOTSTRAP-UNCOMMENT-#ssl_certificate /etc/letsencrypt/live/{{ host }}/fullchain.pem;
-	#-RECKEROPS-BOOTSTRAP-UNCOMMENT-#ssl_certificate_key /etc/letsencrypt/live/{{ host }}/privkey.pem;
+	#-RECKEROPS-BOOTSTRAP-UNCOMMENT-#ssl_certificate /etc/letsencrypt/live/{{ info['hostname'] }}/fullchain.pem;
+	#-RECKEROPS-BOOTSTRAP-UNCOMMENT-#ssl_certificate_key /etc/letsencrypt/live/{{ info['hostname'] }}/privkey.pem;
 
 	location / {
 	    proxy_pass {{ info['upstream'] }};

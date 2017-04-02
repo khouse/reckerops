@@ -36,7 +36,7 @@ datadog-conf:
     - template: jinja
     - context:
         API_KEY: {{ pillar['datadog']['key'] }}
-        TAG: {{ pillar['datadog']['key'] }}
+        TAG: {{ pillar['datadog']['tags'] }}
     - watch:
       - pkg: datadog-pkg
 

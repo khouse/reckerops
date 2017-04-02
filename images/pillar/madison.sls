@@ -1,6 +1,4 @@
 hosts:
-  astuaryart.com:
-    upstream: http://127.0.0.1:8001
   reckerdogs.com:
     upstream: http://127.0.0.1:8002
 
@@ -17,19 +15,6 @@ compose:
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
-
-   astuary:
-     depends_on:
-       - db
-     image: wordpress:latest
-     ports:
-       - 8001:80
-     restart: always
-     links:
-       - db:mysql
-     environment:
-       WORDPRESS_TABLE_PREFIX: art
-       WORDPRESS_DB_PASSWORD: wordpress
 
    reckerdogs:
      depends_on:

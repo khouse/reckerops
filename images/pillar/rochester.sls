@@ -1,9 +1,15 @@
 datadog:
-  tag: rochester
+  tags: machine:rochester site:tranquilitydesignsmn.com
+
+nginx:
+  tranquilitydesigns:
+    hostname: tranquilitydesignsmn.com
+    upstream: http://127.0.0.1:8080
+    redirect_www: true
 
 hosts:
-  tranquilitydesignsmn.com:
-    upstream: http://127.0.0.1:8080
+  - tranquilitydesignsmn.com
+  - www.tranquilitydesignsmn.com
 
 compose:
   version: '2'

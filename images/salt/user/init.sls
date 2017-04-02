@@ -12,3 +12,8 @@ user-created:
     - groups: {{ user.groups }}
     - require:
       - pkg: user-packages-installed
+
+user-authorized:
+  ssh_auth.present:
+    - user: {{ user.username }}
+    - names: {{ user.pubkeys }}

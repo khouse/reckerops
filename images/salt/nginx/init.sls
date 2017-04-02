@@ -26,7 +26,7 @@ nginx-configured:
     - source: salt://nginx/nginx.conf.jinja
     - template: jinja
     - context:
-        hosts: {{ salt['pillar.get']('hosts', {}) }}
+        hosts: {{ salt['pillar.get']('nginx', {}) }}
         webroot: {{ nginx.webroot }}
     - user: root
     - group: root

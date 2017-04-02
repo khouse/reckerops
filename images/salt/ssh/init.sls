@@ -9,9 +9,6 @@ ssh-configured:
     - name: {{ ssh.config }}
     - source: salt://ssh/sshd_config.jinja
     - template: jinja
-    - context:
-        port: {{ ssh.port }}
-        root_login: {{ ssh.root_login }}
     - user: root
     - group: root
     - mode: 644
@@ -22,6 +19,7 @@ ssh-running:
   service.running:
     - name: {{ ssh.service }}
     - enable: True
+    - reload: True
     - watch:
       - pkg: ssh-installed
       - file: ssh-configured

@@ -19,3 +19,20 @@ certbot-installed:
     {% if certbot.repo %}
     - fromrepo: jessie-backports
     {% endif %}
+
+certbot-renew-script-created:
+  file.managed:
+    - name: /reckerops/certbot-renew.sh
+    - source: salt://certbot/renew.sh
+    - makedirs: True
+    - user: root
+    - group: root
+    - mode: 744
+
+certbot-renew-cron-installed:
+  cron.present:
+    - name: /reckerops/certbot-renew.sh
+    - user: root
+    - minute: 0
+    - hour: 1
+    - dayweek: SUN

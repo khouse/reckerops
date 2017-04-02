@@ -2,14 +2,6 @@
   'default': {
     'package': 'openssh-server',
     'service': 'sshd',
-    'config': '/etc/ssh/sshd_config',
-    'port': 22
-  },
-  'jessie': {
-    'root_login': 'yes',
-  },
-  'trusty': {
-    'service': 'ssh',
-    'root_login': 'no',
+    'config': '/etc/ssh/sshd_config'
   }
 }, merge=salt['pillar.get']('ssh:lookup'), base='default', grain='oscodename') %}
