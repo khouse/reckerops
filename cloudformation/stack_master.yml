@@ -2,7 +2,7 @@ stacks:
   us-west-2:
     reckerops-build:
       template: build.rb
-    reckerops-statics:
-      template: statics.rb
+    reckerops-astuary:
+      template: astuary.rb
     reckerops-vault:
       template: vault.rb

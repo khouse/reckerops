@@ -2,7 +2,7 @@
 
 # rubocop:disable BlockLength
 SparkleFormation.new(:statics) do
-  resources.astuary_bucket do
+  resources.bucket do
     Type 'AWS::S3::Bucket'
     Properties do
       BucketName 'astuaryart.com'
@@ -14,10 +14,10 @@ SparkleFormation.new(:statics) do
     end
   end
 
-  resources.astuary_bucket_policy do
+  resources.bucket_policy do
     Type 'AWS::S3::BucketPolicy'
     Properties do
-      Bucket ref!(:astuary_bucket)
+      Bucket ref!(:bucket)
       PolicyDocument do
         Statement [
           Principal: '*',
@@ -29,23 +29,23 @@ SparkleFormation.new(:statics) do
     end
   end
 
-  resources.astuary_bucket_redirect do
+  resources.bucket_redirect do
     Type 'AWS::S3::Bucket'
     Properties do
       BucketName 'www.astuaryart.com'
       AccessControl 'BucketOwnerFullControl'
       WebsiteConfiguration do
         RedirectAllRequestsTo do
-          HostName ref!(:astuary_bucket)
+          HostName ref!(:bucket)
         end
       end
     end
   end
 
-  resources.astuary_bucket_redirect_policy do
+  resources.bucket_redirect_policy do
     Type 'AWS::S3::BucketPolicy'
     Properties do
-      Bucket ref!(:astuary_bucket_redirect)
+      Bucket ref!(:bucket_redirect)
       PolicyDocument do
         Statement [
           Principal: '*',
@@ -56,4 +56,14 @@ SparkleFormation.new(:statics) do
       end
     end
   end
+
+  dynamic!(
+    :user, :build_user,
+    user_name: join!(stack_name!, '-build-', region!),
+    policy_name: 'BuildUserPolicy', effect: 'Allow',
+    resource: 'arn:aws:s3:::astuaryart.com/*',
+    action: [
+      's3:PutObject'
+    ]
+  )
 end
