@@ -1,5 +1,7 @@
 language: ruby
 
+sudo: required
+
 addons:
   apt:
     packages:
@@ -15,6 +17,7 @@ env:
     - COMMAND="scripts/travis-lint-python.sh"
     - COMMAND="scripts/travis-kitchen.sh"
     - COMMAND="scripts/travis-cloudformation.sh"
+    - COMMAND="scripts/travis-dns.sh"
 
 script: $COMMAND
 
