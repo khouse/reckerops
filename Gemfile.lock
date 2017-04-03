@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/arecker/kitchen-salt.git
-  revision: 1bcec52ff8fe04a2fe0318396f63d034d0362121
+  revision: b53029c8b0ec91aff04393287b90d89548705863
   specs:
-    kitchen-salt (0.0.3)
+    kitchen-salt (0.0.5)
       test-kitchen
 
 GEM
@@ -28,7 +28,7 @@ GEM
     bogo (0.2.8)
       hashie
       multi_json
-    cfndsl (0.12.3)
+    cfndsl (0.12.4)
     colorize (0.8.1)
     commander (4.4.3)
       highline (~> 1.7.2)
@@ -83,7 +83,7 @@ GEM
       attribute_struct (>= 0.2.27, < 0.4)
       bogo
       multi_json
-    stack_master (0.13.0)
+    stack_master (0.14.0)
       activesupport (~> 4.2)
       aws-sdk (~> 2.6.26)
       cfndsl

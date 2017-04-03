@@ -1,7 +1,7 @@
 base:
 
-  '*':
-    - global
-
   rochester:
     - rochester
+
+  strongbadia:
+    - strongbadia

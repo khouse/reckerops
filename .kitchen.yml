@@ -19,6 +19,6 @@ platforms:
   - name: debian
 
 suites:
-- name: rochester
+- name: default
   provisioner:
-    minion_config: images/configs/rochester.yml
+    minion_config: images/configs/strongbadia.yml

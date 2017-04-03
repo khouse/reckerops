@@ -1,5 +1,5 @@
 datadog:
-  tags: machine:rochester site:tranquilitydesignsmn.com
+  tags: machine:rochester website:tranquilitydesignsmn.com
 
 nginx:
   tranquilitydesigns:

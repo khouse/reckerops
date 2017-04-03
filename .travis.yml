@@ -13,7 +13,7 @@ env:
   matrix:
     - COMMAND="scripts/travis-lint-ruby.sh"
     - COMMAND="scripts/travis-lint-python.sh"
-    - COMMAND="scripts/travis-kitchen.sh" MACHINE="rochester"
+    - COMMAND="scripts/travis-kitchen.sh"
     - COMMAND="scripts/travis-cloudformation.sh"
 
 script: $COMMAND
