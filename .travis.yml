@@ -1,14 +1,11 @@
 language: ruby
-
+dist: trusty
 sudo: required
-
 addons:
   apt:
     packages:
       - pep8
-
 before_install: scripts/travis-private-key.sh
-
 env:
   global:
     - KITCHEN_LOCAL_YAML=".kitchen.travis.yml"
@@ -18,14 +15,10 @@ env:
     - COMMAND="scripts/travis-kitchen.sh"
     - COMMAND="scripts/travis-cloudformation.sh"
     - COMMAND="scripts/travis-dns.sh"
-
 script: $COMMAND
-
 after_script: scripts/travis-cleanup.sh
-
 notifications:
   email: false
-
 branches:
   only:
     - master
