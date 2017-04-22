@@ -3,4 +3,4 @@ kitchen list
 kitchen converge && kitchen verify
 kitchen_success=$?
 kitchen destroy
-exit kitchen_success
+exit $kitchen_success
