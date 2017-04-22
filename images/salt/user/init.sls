@@ -13,7 +13,9 @@ user-created:
     - require:
       - pkg: user-packages-installed
 
+{% if 'ssh' in salt['grains.get']('services', []) %}
 user-authorized:
   ssh_auth.present:
     - user: {{ user.username }}
     - names: {{ user.pubkeys }}
+{% endif %}

@@ -1,13 +1,13 @@
 base:
+
   '*':
     - locale
     - firewall
-    - ssh
     - python
+    - ssh
     - docker
-    - hosts
     - nginx
+    - hosts
     - certbot
     - datadog
     - user
-    - bootstrap

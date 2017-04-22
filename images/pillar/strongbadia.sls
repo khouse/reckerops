@@ -1,8 +1,5 @@
-password: $1$NgmlyGrl$eKpdudCg/2Xm6JFUp3Y0V/
-
 datadog:
-  key: real-key-here
-  tags: machine:strongbadia website:test.alexrecker.com
+  tags: 'machine:strongbadia website:test.alexrecker.com'
 
 nginx:
   test:

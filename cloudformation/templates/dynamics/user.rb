@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 SparkleFormation.dynamic(:user) do |name, config|
   resources(name) do
     Type 'AWS::IAM::User'

@@ -1,0 +1,28 @@
+---
+driver:
+  name: ec2
+  region: us-west-2
+  subnet_filter:
+    tag: 'Name'
+    value: 'reckerops-build'
+  security_group_filter:
+    tag: 'Name'
+    value: 'reckerops-build'
+  aws_ssh_key_id: reckerops-build
+
+transport:
+  ssh_key: /build.pem
+
+provisioner:
+  name: salt
+  local_state_tree: salt
+  local_pillar_roots: pillar
+  state_output: mixed
+
+platforms:
+  - name: debian
+
+suites:
+- name: strongbadia
+  provisioner:
+    minion_config: configs/strongbadia.yml

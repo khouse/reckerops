@@ -1,5 +1,0 @@
-version: '2'
-services:
-  dns:
-    build: .
-    image: arecker/reckerops-dns:latest

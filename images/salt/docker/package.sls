@@ -4,7 +4,7 @@
 docker-repo-added:
   pkgrepo.managed:
     - humanname: Docker
-    - name: {{ docker.repo_entry }}
+    - name: {{ docker.repo.entry }}
     - file: {{ docker.repo.file }}
     - keyid: {{ docker.repo.keyid }}
     - keyserver: {{ docker.repo.keyserver }}

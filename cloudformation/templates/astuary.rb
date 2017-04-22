@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# rubocop:disable BlockLength
 SparkleFormation.new(:astuary) do
   resources.bucket do
     Type 'AWS::S3::Bucket'
