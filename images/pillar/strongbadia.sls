@@ -1,3 +1,5 @@
+ip: 127.0.0.1
+
 datadog:
   tags: 'machine:strongbadia website:test.alexrecker.com'
 

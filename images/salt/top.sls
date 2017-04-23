@@ -11,3 +11,4 @@ base:
     - certbot
     - datadog
     - user
+    - bootstrap
