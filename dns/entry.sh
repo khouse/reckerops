@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-salt-call --local saltutil.sync_states
-salt-call --local state.highstate
+echo "key: $CLOUDFLARE_API_KEY" >> /srv/pillar/dns.sls
+salt-call --local state.highstate --state-output=mixed

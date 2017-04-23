@@ -8,6 +8,7 @@ before_install: secrets/travis.sh
 script:
   - docker-compose build
   - docker-compose up cloudformation
+  - docker-compose up dns
   - docker-compose up images
 
 notifications:
