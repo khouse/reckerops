@@ -3,7 +3,6 @@ version: '2'
 services:
 
   dns:
-    container_name: dns
     image: arecker/reckerops/dns:latest
     build: ./dns
     network_mode: bridge
@@ -11,7 +10,6 @@ services:
       - ./secrets/secrets.env
 
   cloudformation:
-    container_name: cloudformation
     image: arecker/reckerops/cloudformation:latest
     build: ./cloudformation
     network_mode: bridge
@@ -19,7 +17,6 @@ services:
       - ./secrets/secrets.env
 
   images:
-    container_name: images
     image: arecker/reckerops/images:latest
     build: ./images
     network_mode: bridge
