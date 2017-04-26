@@ -6,6 +6,8 @@ services:
     image: arecker/reckerops/dns:latest
     build: ./dns
     network_mode: bridge
+    environment:
+      - CLOUDFLARE_EMAIL='alex@reckerfamily.com'
     env_file:
       - ./secrets/secrets.env
 
@@ -22,8 +24,6 @@ services:
       context: ./images
       dockerfile: Dockerfile.kitchen
     network_mode: bridge
-    environment:
-      - CLOUDFLARE_EMAIL='alex@reckerfamily.com'
     env_file:
       - ./secrets/secrets.env
     volumes:
