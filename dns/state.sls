@@ -3,8 +3,8 @@
   cloudflare.manage_zone_records:
     - zone:
         auth_key: {{ pillar['key'] }}
+        auth_email: {{ pillar['email'] }}
         zone_id: {{ info['id'] }}
-        auth_email: {{ info['email'] }}
         records:
           {% for record in info.get('records', []) %}
           - name: {{ record['name'] }}

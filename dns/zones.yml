@@ -1,6 +1,5 @@
 alexandmarissa.com:
   id: e25a43c5e4599b63a522454cbb04f93b
-  email: alex@reckerfamily.com
   records:
     - name: alexandmarissa.com
       content: alexandmarissa.com.s3-website-us-west-2.amazonaws.com
@@ -13,7 +12,6 @@ alexandmarissa.com:
 
 alexrecker.com:
   id: 71d79a2865bfcb03a6400c17e3e6ce27
-  email: alex@reckerfamily.com
   records:
     - name: alexrecker.com
       content: alexrecker.com.s3-website-us-west-2.amazonaws.com
@@ -33,7 +31,6 @@ alexrecker.com:
 
 astuaryart.com:
   id: a38f74181d6960fb8897e22cec4ee9f4
-  email: alex@reckerfamily.com
   records:
     - name: astuaryart.com
       content: astuaryart.com.s3-website-us-west-2.amazonaws.com
@@ -46,7 +43,6 @@ astuaryart.com:
 
 bobrosssearch.com:
   id: 7d59ccdda1044e9a67a382ce74a218c1
-  email: alex@reckerfamily.com
   records:
     - name: bobrosssearch.com
       content: bobrosssearch.com.s3-website-us-west-2.amazonaws.com
@@ -63,7 +59,6 @@ bobrosssearch.com:
 
 concessobox.com:
   id: 2aa33e1fae27c04b8a190f1ac37c07aa
-  email: alex@reckerfamily.com
   records:
     - name: concessobox.com
       content: 178.62.250.162
@@ -75,7 +70,6 @@ concessobox.com:
 
 reckerdogs.com:
   id: f4d837ffea712c01e6d055ba14688308
-  email: alex@reckerfamily.com
   records:
     - name: reckerdogs.com
       content: 128.199.62.155
@@ -87,7 +81,6 @@ reckerdogs.com:
 
 sarahrecker.com:
   id: 71fd1cee6581984834fcb7893b38b1b6
-  email: alex@reckerfamily.com
   records:
     - name: sarahrecker.com
       content: 159.203.69.74

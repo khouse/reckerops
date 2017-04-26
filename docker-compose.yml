@@ -20,6 +20,8 @@ services:
     image: arecker/reckerops/images:latest
     build: ./images
     network_mode: bridge
+    environment:
+      - CLOUDFLARE_EMAIL='alex@reckerfamily.com'
     env_file:
       - ./secrets/secrets.env
     volumes:
