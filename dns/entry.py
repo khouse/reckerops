@@ -23,7 +23,10 @@ def main():
     for zone, info in zones.iteritems():
         for record in info.get('records', []):
             if record.get('content', '').startswith('stack_output:'):
-                record['content'] = stack_output(record['content'])
+                old = record['content']
+                new = stack_output(old)
+                print('changing {} to {}'.format(old, new))
+                record['content'] = new
 
     pillar = json.dumps({
         'key': os.environ['CLOUDFLARE_API_KEY'],
