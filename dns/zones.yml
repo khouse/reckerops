@@ -2,11 +2,11 @@ alexandmarissa.com:
   id: e25a43c5e4599b63a522454cbb04f93b
   records:
     - name: alexandmarissa.com
-      content: alexandmarissa.com.s3-website-us-west-2.amazonaws.com
+      content: stack_output:reckerops-wedding:Url
       type: CNAME
       proxied: true
     - name: www.alexandmarissa.com
-      content: alexandmarissa.com
+      content: stack_output:reckerops-wedding:UrlRedirect
       type: CNAME
       proxied: true
 

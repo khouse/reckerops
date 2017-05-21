@@ -13,3 +13,6 @@ stacks:
 
     reckerops-vault:
       template: vault.rb
+
+    reckerops-wedding:
+      template: static.rb
