@@ -6,6 +6,7 @@ HERE=$(dirname "$0")
 # aws.env
 echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" > $HERE/aws.env
 echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> $HERE/aws.env
+echo "AWS_DEFAULT_REGION=us-west-2" >> $HERE/aws.env
 
 # cloudflare.env
 echo "CLOUDFLARE_API_KEY=$CLOUDFLARE_API_KEY" > $HERE/cloudflare.env
