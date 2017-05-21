@@ -35,7 +35,7 @@ def main():
     })
 
     os.system('salt-call --local saltutil.sync_states')
-    os.system("salt-call --local state.sls dns --state-output=mixed pillar='{}'".format(pillar))
+    os.system("salt-call --local --retcode-passthrough state.sls dns --state-output=mixed pillar='{}'".format(pillar))
 
 
 if __name__ == '__main__':
