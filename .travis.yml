@@ -7,7 +7,8 @@ before_install: secrets/travis.sh
 
 script:
   - docker-compose build
-  - docker-compose up cloudformation
+  - docker-compose up cfn
+  - docker-compose up dns
 
 notifications:
   email: false

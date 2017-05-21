@@ -5,6 +5,9 @@ stacks:
     reckerops-astuary:
       template: static.rb
 
+    reckerops-bob:
+      template: static.rb
+
     reckerops-build:
       template: build.rb
 

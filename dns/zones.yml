@@ -45,11 +45,11 @@ bobrosssearch.com:
   id: 7d59ccdda1044e9a67a382ce74a218c1
   records:
     - name: bobrosssearch.com
-      content: bobrosssearch.com.s3-website-us-west-2.amazonaws.com
+      content: stack_output:reckerops-bob:Url
       type: CNAME
       proxied: true
     - name: www.bobrosssearch.com
-      content: bobrosssearch.com
+      content: stack_output:reckerops-bob:UrlRedirect
       type: CNAME
       proxied: true
     - name: bobrosssearch.com
