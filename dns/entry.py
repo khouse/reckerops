@@ -20,7 +20,6 @@ def stack_output(content):
 def main():
     zones = yaml.load(open('./zones.yml'))
 
-    import ipdb; ipdb.set_trace()
     for zone, info in zones.iteritems():
         for record in info.get('records', []):
             if record.get('content', '').startswith('stack_output:'):
