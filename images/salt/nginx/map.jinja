@@ -1,6 +1,0 @@
-{% set nginx = salt['grains.filter_by']({
-  'default': {
-    'packages': ['nginx', 'nginx-extras', 'curl'],
-    'webroot': '/var/www/'
-  }
-}, merge=salt['pillar.get']('nginx:lookup'), base='default', grain='oscodename') %}

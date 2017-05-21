@@ -1,7 +1,0 @@
-base:
-
-  '*':
-    - global
-
-  strongbadia:
-    - strongbadia

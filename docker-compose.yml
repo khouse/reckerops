@@ -1,30 +1,11 @@
-version: '2'
+version: 2
 
 services:
 
-  dns:
-    image: arecker/reckerops/dns:latest
-    build: ./dns
-    network_mode: bridge
-    environment:
-      - CLOUDFLARE_EMAIL='alex@reckerfamily.com'
-    env_file:
-      - ./secrets/secrets.env
-
-  cloudformation:
+  cfn:
+    container_name: cfn
     image: arecker/reckerops/cloudformation:latest
     build: ./cloudformation
     network_mode: bridge
     env_file:
-      - ./secrets/secrets.env
-
-  kitchen:
-    image: arecker/reckerops/kitchen:latest
-    build:
-      context: ./images
-      dockerfile: Dockerfile.kitchen
-    network_mode: bridge
-    env_file:
-      - ./secrets/secrets.env
-    volumes:
-      - ./secrets/build.pem:/build.pem
+      - ./secrets/aws.env

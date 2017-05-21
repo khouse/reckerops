@@ -13,16 +13,38 @@ SparkleFormation.new(:build) do
     Default '10.0.0.0/16'
   end
 
-  dynamic!(
-    :user, :user,
-    user_name: join!(stack_name!, '-', region!),
-    policy_name: 'BuildEC2Policy', effect: 'Allow',
-    resource: '*', action: [
-      'cloudformation:*',
-      'ec2:*',
-      'sns:*'
-    ]
-  )
+  resources.user do
+    Type 'AWS::IAM::User'
+    Properties do
+      UserName join!(stack_name!, '-', region!)
+      Policies [
+        PolicyName:  'BuildEC2Policy',
+        PolicyDocument: {
+          Version: '2012-10-17',
+          Statement: [
+            {
+              Effect: 'Allow',
+              Action: [
+                'cloudformation:*',
+                'ec2:*',
+                'sns:*'
+              ],
+              Resource: '*'
+            }
+          ]
+        }
+      ]
+    end
+  end
+
+  resources.access_key do
+    Type 'AWS::IAM::AccessKey'
+    Properties do
+      Serial 0
+      Status 'Active'
+      UserName ref!(:user)
+    end
+  end
 
   resources.vpc do
     Type 'AWS::EC2::VPC'
@@ -110,5 +132,15 @@ SparkleFormation.new(:build) do
   outputs.security_group_id do
     Description 'Security Group ID'
     Value ref!(:security_group)
+  end
+
+  outputs.access_key_id do
+    Description 'AWS_ACCESS_KEY_ID'
+    Value ref!(:access_key)
+  end
+
+  outputs.access_key_secret do
+    Description 'AWS_SECRET_ACCESS_KEY'
+    Value attr!(:access_key, :SecretAccessKey)
   end
 end
