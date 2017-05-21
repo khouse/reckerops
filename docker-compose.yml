@@ -1,11 +1,20 @@
-version: 2
+version: '2'
 
 services:
 
   cfn:
     container_name: cfn
-    image: arecker/reckerops/cloudformation:latest
-    build: ./cloudformation
+    image: arecker/reckerops/cfn:latest
+    build: ./cfn
     network_mode: bridge
     env_file:
       - ./secrets/aws.env
+
+  dns:
+    container_name: dns
+    image: arecker/reckerops/dns:latest
+    build: ./dns
+    network_mode: bridge
+    env_file:
+      - ./secrets/aws.env
+      - ./secrets/cloudflare.env

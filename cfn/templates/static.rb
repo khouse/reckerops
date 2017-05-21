@@ -95,6 +95,11 @@ SparkleFormation.new(:static) do
     Value attr!(:bucket, :WebsiteURL)
   end
 
+  outputs.url_redirect do
+    Description 'URL for the website www redirect'
+    Value attr!(:bucket_redirect, :WebsiteURL)
+  end
+
   outputs.access_key_id do
     Description 'AWS_ACCESS_KEY_ID'
     Value ref!(:access_key)

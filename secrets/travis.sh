@@ -9,6 +9,7 @@ echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> $HERE/aws.env
 
 # cloudflare.env
 echo "CLOUDFLARE_API_KEY=$CLOUDFLARE_API_KEY" > $HERE/cloudflare.env
+echo "CLOUDFLARE_EMAIL=alex@reckerfamily.com" >> $HERE/cloudflare.env
 
 # build.pem
 echo '-----BEGIN RSA PRIVATE KEY-----' > $HERE/ssh.pem
