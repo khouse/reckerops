@@ -24,7 +24,7 @@ def main():
         for record in info.get('records', []):
             if record.get('content', '').startswith('stack_output:'):
                 old = record['content']
-                new = stack_output(old)
+                new = stack_output(old).replace('http://', '')  # TODO: Hack?
                 print('changing {} to {}'.format(old, new))
                 record['content'] = new
 
