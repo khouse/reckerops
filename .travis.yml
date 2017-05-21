@@ -5,10 +5,7 @@ services:
 
 before_install: secrets/travis.sh
 
-script:
-  - docker-compose build
-  - docker-compose up cfn
-  - docker-compose up dns
+script: travis.sh
 
 notifications:
   email: false
