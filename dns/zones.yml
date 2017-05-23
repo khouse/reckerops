@@ -18,7 +18,7 @@ alexrecker.com:
       type: CNAME
       proxied: true
     - name: demo.alexrecker.com
-      content: demo.alexrecker.com.s3-website-us-west-2.amazonaws.com
+      content: stack_output:reckerops-demo:Url
       type: CNAME
       proxied: true
     - name: www.alexrecker.com
@@ -96,6 +96,6 @@ sarahrecker.com:
       content: 159.203.69.74
       proxied: true
     - name: scrabble.sarahrecker.com
-      content: scrabble.sarahrecker.com.s3-website-us-west-2.amazonaws.com
+      content: stack_output:reckerops-sriram:ScrabbleUrl
       type: CNAME
       proxied: true

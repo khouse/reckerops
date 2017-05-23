@@ -11,6 +11,12 @@ stacks:
     reckerops-build:
       template: build.rb
 
+    reckerops-demo:
+      template: demo.rb
+
+    reckerops-sriram:
+      template: sriram.rb
+
     reckerops-vault:
       template: vault.rb
 
