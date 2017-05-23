@@ -6,6 +6,12 @@ SparkleFormation.new(:static) do
     Description 'example.com'
   end
 
+  parameters.access_key_serial do
+    Type 'Number'
+    Default 0
+    Description 'Increment to rotate access key'
+  end
+
   resources.user do
     Type 'AWS::IAM::User'
     Properties do
@@ -35,60 +41,8 @@ SparkleFormation.new(:static) do
     end
   end
 
-  resources.bucket do
-    Type 'AWS::S3::Bucket'
-    Properties do
-      BucketName ref!(:domain)
-      AccessControl 'PublicRead'
-      WebsiteConfiguration do
-        IndexDocument 'index.html'
-        ErrorDocument '404.html'
-      end
-    end
-  end
-
-  resources.bucket_policy do
-    Type 'AWS::S3::BucketPolicy'
-    Properties do
-      Bucket ref!(:bucket)
-      PolicyDocument do
-        Statement [
-          Principal: '*',
-          Action: 's3:GetObject',
-          Effect: 'Allow',
-          Resource: join!('arn:aws:s3:::', ref!(:domain), '/*')
-        ]
-      end
-    end
-  end
-
-  resources.bucket_redirect do
-    Type 'AWS::S3::Bucket'
-    Properties do
-      BucketName join!('www.', ref!(:domain))
-      AccessControl 'BucketOwnerFullControl'
-      WebsiteConfiguration do
-        RedirectAllRequestsTo do
-          HostName ref!(:bucket)
-        end
-      end
-    end
-  end
-
-  resources.bucket_redirect_policy do
-    Type 'AWS::S3::BucketPolicy'
-    Properties do
-      Bucket ref!(:bucket_redirect)
-      PolicyDocument do
-        Statement [
-          Principal: '*',
-          Action: ['s3:GetObject'],
-          Effect: 'Allow',
-          Resource: join!('arn:aws:s3:::www.', ref!(:domain), '/*')
-        ]
-      end
-    end
-  end
+  dynamic!(:r_bucket_web, :bucket, domain: ref!(:domain))
+  dynamic!(:r_bucket_web_redirect, :bucket_redirect, domain: join!('www.', ref!(:domain)), target: ref!(:domain))
 
   outputs.url do
     Description 'URL for the website'
