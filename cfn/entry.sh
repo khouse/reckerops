@@ -2,4 +2,4 @@
 set -e
 stack_master validate
 stack_master diff
-stack_master apply
+stack_master apply --yes
