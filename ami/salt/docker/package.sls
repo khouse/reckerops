@@ -20,6 +20,7 @@ docker-compose-installed:
   file.managed:
     - name: /usr/local/bin/docker-compose
     - source: https://github.com/docker/compose/releases/download/1.14.0/docker-compose-Linux-x86_64
+    - skip_verify: True  # TODO: Gross
     - user: root
     - group: root
     - mode: 755
