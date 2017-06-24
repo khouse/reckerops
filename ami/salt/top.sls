@@ -6,4 +6,5 @@ base:
     - firewall
     - ssh
     - user
+    - nginx
     - certbot
