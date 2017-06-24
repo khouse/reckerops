@@ -1,5 +1,0 @@
-driver:
-  aws_ssh_key_id: reckerops-kitchen
-
-transport:
-  ssh_key: /kitchen.pem

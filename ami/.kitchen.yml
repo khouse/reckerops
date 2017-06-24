@@ -8,10 +8,10 @@ driver:
   security_group_filter:
     tag: 'Name'
     value: 'reckerops-build'
-  aws_ssh_key_id: alex@lappy-486
+  aws_ssh_key_id: reckerops-kitchen
 
 transport:
-  ssh_key: ~/.ssh/id_rsa
+  ssh_key: /kitchen.pem
 
 provisioner:
   name: salt

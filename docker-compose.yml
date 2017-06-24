@@ -24,8 +24,6 @@ services:
     image: arecker/reckerops/ami:latest
     build: ./ami
     network_mode: bridge
-    environment:
-      - KITCHEN_LOCAL_CONFIG=".kitchen.travis.yml"
     env_file:
       - ./secrets/aws.env
     volumes:
