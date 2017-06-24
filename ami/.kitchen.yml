@@ -16,6 +16,8 @@ transport:
 provisioner:
   name: salt
   local_state_tree: salt
+  local_pillar_roots: pillar
+  minion_config: minion/kitchen
 
 platforms:
   - name: debian
