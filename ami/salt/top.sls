@@ -7,4 +7,6 @@ base:
     - ssh
     - user
     - nginx
+    - hosts
     - certbot
+    - docker
