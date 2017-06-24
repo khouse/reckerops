@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-kitchen test
+kitchen converge && kitchen verify
+success=$?
+kitchen destroy
+exit $success
