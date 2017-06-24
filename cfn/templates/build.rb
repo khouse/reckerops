@@ -119,6 +119,39 @@ SparkleFormation.new(:build) do
     end
   end
 
+  resources.security_group_allow_ssh do
+    Type 'AWS::EC2::SecurityGroupIngress'
+    Properties do
+      GroupId ref!(:security_group)
+      CidrIp '0.0.0.0/0'
+      FromPort '22'
+      ToPort '22'
+      IpProtocol 'tcp'
+    end
+  end
+
+  resources.security_group_allow_http do
+    Type 'AWS::EC2::SecurityGroupIngress'
+    Properties do
+      GroupId ref!(:security_group)
+      CidrIp '0.0.0.0/0'
+      FromPort '80'
+      ToPort '80'
+      IpProtocol 'tcp'
+    end
+  end
+
+  resources.security_group_allow_https do
+    Type 'AWS::EC2::SecurityGroupIngress'
+    Properties do
+      GroupId ref!(:security_group)
+      CidrIp '0.0.0.0/0'
+      FromPort '443'
+      ToPort '443'
+      IpProtocol 'tcp'
+    end
+  end
+
   outputs.region do
     Description 'Region'
     Value region!
