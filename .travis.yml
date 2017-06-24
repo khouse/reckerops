@@ -9,6 +9,7 @@ script:
   - docker-compose build
   - docker-compose run cfn
   - docker-compose run dns
+  - docker-compose run ami
 
 notifications:
   email: false

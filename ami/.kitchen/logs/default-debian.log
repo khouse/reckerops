@@ -1,0 +1,3 @@
+I, [2017-06-24T00:35:03.694256 #20702]  INFO -- default-debian: -----> Destroying <default-debian>...
+I, [2017-06-24T00:35:04.266152 #20702]  INFO -- default-debian: EC2 instance <i-0d4f2fc6b5c32b839> destroyed.
+I, [2017-06-24T00:35:04.267827 #20702]  INFO -- default-debian: Finished destroying <default-debian> (0m0.57s).

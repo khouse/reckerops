@@ -1,0 +1,5 @@
+driver:
+  aws_ssh_key_id: alex@lappy-486
+
+transport:
+  ssh_key: ~/.ssh/id_rsa

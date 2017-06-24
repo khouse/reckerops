@@ -1,0 +1,8 @@
+{% set firewall = salt['grains.filter_by']({
+  'default': {
+    'ssh_port': 22,
+    'http_port': 80,
+    'https_port': 443,
+    'docker_range': '172.17.0.0/16'
+  }
+}, merge=salt['pillar.get']('firewall:lookup'), base='default', grain='os') %}

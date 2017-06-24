@@ -18,3 +18,15 @@ services:
     env_file:
       - ./secrets/aws.env
       - ./secrets/cloudflare.env
+
+  ami:
+    container_name: ami
+    image: arecker/reckerops/ami:latest
+    build: ./ami
+    network_mode: bridge
+    environment:
+      - KITCHEN_LOCAL_CONFIG=".kitchen.travis.yml"
+    env_file:
+      - ./secrets/aws.env
+    volumes:
+      - ./secrets/kitchen.pem:/kitchen.pem:ro

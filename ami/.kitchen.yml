@@ -1,0 +1,24 @@
+---
+driver:
+  name: ec2
+  region: us-west-2
+  subnet_filter:
+    tag: 'Name'
+    value: 'reckerops-build'
+  security_group_filter:
+    tag: 'Name'
+    value: 'reckerops-build'
+  aws_ssh_key_id: alex@lappy-486
+
+transport:
+  ssh_key: ~/.ssh/id_rsa
+
+provisioner:
+  name: salt
+  local_state_tree: salt
+
+platforms:
+  - name: debian
+
+suites:
+- name: default

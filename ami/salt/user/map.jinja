@@ -1,0 +1,10 @@
+{% set user = salt['grains.filter_by']({
+  'default': {
+    'username': 'alex',
+    'shell': '/bin/bash',
+    'groups': ['sudo'],
+    'pubkeys': [
+      'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDNaBjTCsUaa88Atso9CtPOtcOJGXPiO2B/RHlsNeP0vMwfneaxwfLZzmIa0Jiyn2jc/tcf/mnreuhluEB+Az+v9Yu7Dhdpo1bDxkgrS7y/1zrY853xmMQyshe4+8+wI+DB5De5u/oEtY2ROSpNbXlWGl/VUnrq8mpmhgRZE0YVe+21+YaSOkr920QXSn8YHB8SswCjoYlH6g6/Ob01z9opxeBoQilIWJFxm3hYljnypqqY+wbMrrOp6a8hzoIqsf2sUgSexhNnahcHcKjYEn9HTW17ANp7nZaEGtsUVApZtBMmKHNpJtDL6Fg7qpsoh1imvndgT+rmRiiPdj5XIvuUglcMBaxliXCRh+OZwMv9RMDnEeZrkfWJmonZRdMagnXWFPtRjbHmrlIqcRo5P1it6+uKMTW6SUsGL0S2s1qM+PHtwWvXCn4XmbihmTXIOnIDYB4WaQI6feYuGn6mot/8ZVnE89wFLr6oyF9QFXQTFnaV18FsZnMSnu9UlE9ikIMvMV5Fx/LHwxtId31i4Jw/o7SPpDYVrBXd6d6eKfBRBX26yVhMI/pE6pLF74gfx6OPNr6V4hLl2r7opt39u3sy44+NMMF2qi6CtV1yukGYoKWeIVVBkHOsKzZNvzRvyW2gAIveWQOIjpgGAPioeV7iF+qlHXYe/w5nI8jhhQaaDw== alex@lappy-486'
+    ]
+  }
+}, merge=salt['pillar.get']('user:lookup'), base='default', grain='oscodename') %}
