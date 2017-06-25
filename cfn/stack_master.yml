@@ -3,22 +3,22 @@ stacks:
   us-west-2:
 
     astuary:
-      template: static_site.yml
+      template: static.yml
 
     bob:
-      template: static_site.yml
+      template: static.yml
 
-    reckerops-build:
-      template: build.rb
+    build:
+      template: build.yml
 
     demo:
-      template: static_site.yml
+      template: static.yml
 
     scrabble:
-      template: static_site.yml
+      template: static.yml
 
     reckerops-vault:
       template: vault.rb
 
     wedding:
-      template: static_site.yml
+      template: static.yml

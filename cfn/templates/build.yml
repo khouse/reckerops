@@ -108,3 +108,67 @@ Resources:
         - Key: Name
           Value:
             Ref: AWS::StackName
+
+  RouteTableAttachment:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: RouteTable
+      SubnetId:
+        Ref: Subnet
+
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH, HTTP, and HTTPS from anywhere
+      VpcId:
+        Ref: Vpc
+      Tags:
+        - Key: Name
+          Value:
+            Ref: AWS::StackName
+
+  SecurityGroupAllowSSH:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: SecurityGroup
+      CidrIp: 0.0.0.0/0
+      FromPort: "22"
+      ToPort: "22"
+      IpProtocol: TCP
+
+  SecurityGroupAllowHTTP:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: SecurityGroup
+      CidrIp: 0.0.0.0/0
+      FromPort: "80"
+      ToPort: "80"
+      IpProtocol: TCP
+
+  SecurityGroupAllowHTTPS:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId:
+        Ref: SecurityGroup
+      CidrIp: 0.0.0.0/0
+      FromPort: "443"
+      ToPort: "443"
+      IpProtocol: TCP
+
+
+Outputs:
+
+  AccessKeyId:
+    Description: AWS_ACCESS_KEY_ID
+    Value:
+      Ref: UserAccessKey
+      
+  AccessKeySecret:
+    Description: AWS_SECRET_ACCESS_KEY
+    Value:
+      Fn::GetAtt:
+        - UserAccessKey
+        - SecretAccessKey
