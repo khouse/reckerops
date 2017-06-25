@@ -2,11 +2,11 @@ alexandmarissa.com:
   id: e25a43c5e4599b63a522454cbb04f93b
   records:
     - name: alexandmarissa.com
-      content: stack_output:reckerops-wedding:Url
+      content: stack_output:wedding:Url
       type: CNAME
       proxied: true
     - name: www.alexandmarissa.com
-      content: stack_output:reckerops-wedding:UrlRedirect
+      content: stack_output:wedding:UrlRedirect
       type: CNAME
       proxied: true
 
@@ -18,7 +18,7 @@ alexrecker.com:
       type: CNAME
       proxied: true
     - name: demo.alexrecker.com
-      content: stack_output:reckerops-demo:Url
+      content: stack_output:demo:Url
       type: CNAME
       proxied: true
     - name: www.alexrecker.com
@@ -33,11 +33,11 @@ astuaryart.com:
   id: a38f74181d6960fb8897e22cec4ee9f4
   records:
     - name: astuaryart.com
-      content: stack_output:reckerops-astuary:Url
+      content: stack_output:astuary:Url
       type: CNAME
       proxied: true
     - name: www.astuaryart.com
-      content: stack_output:reckerops-astuary:UrlRedirect
+      content: stack_output:astuary:UrlRedirect
       type: CNAME
       proxied: true
 
@@ -45,11 +45,11 @@ bobrosssearch.com:
   id: 7d59ccdda1044e9a67a382ce74a218c1
   records:
     - name: bobrosssearch.com
-      content: stack_output:reckerops-bob:Url
+      content: stack_output:bob:Url
       type: CNAME
       proxied: true
     - name: www.bobrosssearch.com
-      content: stack_output:reckerops-bob:UrlRedirect
+      content: stack_output:bob:UrlRedirect
       type: CNAME
       proxied: true
     - name: bobrosssearch.com
@@ -96,6 +96,6 @@ sarahrecker.com:
       content: 159.203.69.74
       proxied: true
     - name: scrabble.sarahrecker.com
-      content: stack_output:reckerops-sriram:ScrabbleUrl
+      content: stack_output:scrabble:ScrabbleUrl
       type: CNAME
       proxied: true
