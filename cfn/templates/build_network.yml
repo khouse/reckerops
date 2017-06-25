@@ -1,0 +1,110 @@
+Description: Basic Public EC2 Network for Kitchen Builds
+
+
+Parameters:
+
+  VpcCidr:
+    Type: String
+    Description: CIDR Block for the VPC
+    Default: 10.0.0.0/16
+
+  SubnetCidr:
+    Type: String
+    Description: CIDR Block for the Subnet
+    Default: 10.0.0.0/16
+
+  AccessKeySerial:
+    Type: String
+    Description: Increment to rotate access key for user.
+    Default: "0"
+
+
+Resources:
+
+  User:
+    Type: AWS::IAM::User
+    Properties:
+      UserName:
+        Fn::Join: [ "-", [ { "Ref": "AWS::StackName" }, { "Ref": "AWS::Region" } ] ]
+      Policies:
+        - PolicyName: BuildCloudFormationPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Resource: "*"
+                Action: "cloudformation:*"
+        - PolicyName: BuildEc2Policy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Resource: "*"
+                Action: "ec2:*"
+
+  UserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      Serial:
+        Ref: AccessKeySerial
+      Status: Active
+      UserName:
+        Ref: User
+
+  Vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      Tags:
+        - Key: Name
+          Value:
+            Ref: AWS::StackName
+      CidrBlock:
+        Ref: VpcCidr
+
+  Gateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value:
+            Ref: AWS::StackName
+      
+  GatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId:
+        Ref: Gateway
+      VpcId:
+        Ref: Vpc
+
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: Vpc      
+      Tags:
+        - Key: Name
+          Value:
+            Ref: AWS::StackName
+
+  PublicRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      GatewayId:
+        Ref: Gateway
+      RouteTableId:
+        Ref: RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+
+  Subnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock:
+        Ref: SubnetCidr
+      MapPublicIpOnLaunch: True
+      VpcId:
+        Ref: Vpc
+      Tags:
+        - Key: Name
+          Value:
+            Ref: AWS::StackName
