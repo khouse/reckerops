@@ -5,8 +5,9 @@ base:
     - locale
     - firewall
     - ssh
-    - user
+    - python
     - nginx
     - hosts
     - certbot
     - docker
+    - user

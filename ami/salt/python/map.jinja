@@ -1,0 +1,14 @@
+{% set python = salt['grains.filter_by']({
+  'default': {
+    'packages_install': [
+      'libssl-dev',
+      'python',
+      'python-dev',
+      'python-setuptools',
+    ],
+    'packages_remove': [
+      'python-pip',
+      'python-pip-whl'
+    ]
+  }
+}, merge=salt['pillar.get']('python:lookup'), base='default', grain='oscodename') %}

@@ -16,16 +16,10 @@ docker-installed:
   pkg.installed:
     - name: {{ docker.package }}
 
-docker-pip-installed:
-  pkg.installed:
-    - name: python-pip
-
 docker-compose-installed:
   pip.installed:
-    - name: docker-compose
+    - name: {{ docker.compose_package }}
     - upgrade: True
-    - require:
-      - pkg: docker-pip-installed
 
 docker-group-created:
   group.present:
