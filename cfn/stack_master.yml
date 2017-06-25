@@ -2,23 +2,23 @@ stacks:
 
   us-west-2:
 
-    reckerops-astuary:
-      template: static.rb
+    astuary:
+      template: static_site.yml
 
-    reckerops-bob:
-      template: static.rb
+    bob:
+      template: static_site.yml
 
     reckerops-build:
       template: build.rb
 
-    reckerops-demo:
-      template: demo.rb
+    demo:
+      template: static_site.yml
 
-    reckerops-sriram:
-      template: sriram.rb
+    scrabble:
+      template: static_site.yml
 
     reckerops-vault:
       template: vault.rb
 
-    reckerops-wedding:
-      template: static.rb
+    wedding:
+      template: static_site.yml

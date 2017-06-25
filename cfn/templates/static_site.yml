@@ -1,0 +1,139 @@
+Description: A Static Website Hosted on S3
+
+Parameters:
+
+  Domain:
+    Type: String
+    Description: The domain of the website (e.g. example.com)
+
+  RedirectDomain:
+    Type: String
+    Description: Domain which should redirect to main domain (e.g. www.example.com)
+    Default: None
+
+  IndexDocument:
+    Type: String
+    Default: index.html
+
+  ErrorDocument:
+    Type: String
+    Default: 404.html
+
+  AccessKeySerial:
+    Type: String
+    Description: Increment to rotate access key for user.  Set to None to skip User
+    Default: "0"
+
+
+Conditions:
+
+  UseUser:
+    Fn::Not:
+      - Fn::Equals: [ { Ref: AccessKeySerial }, "None" ]
+  UseRedirect:
+    Fn::Not:
+      - Fn::Equals: [ { Ref: RedirectDomain }, "None" ]
+
+
+Resources:
+
+  User:
+    Type: AWS::IAM::User
+    Condition: UseUser
+    Properties:
+      UserName:
+        Fn::Join: [ "-", [ { "Ref": "AWS::StackName" }, { "Ref": "AWS::Region" } ] ]
+      Policies:
+        - PolicyName: PublishPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "s3:PutObject"
+                Resource:
+                  Fn::Join: [ "", [ { "Fn::GetAtt": [ Bucket, Arn ] }, "/*" ] ]
+
+  UserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Condition: UseUser
+    Properties:
+      Serial:
+        Ref: AccessKeySerial
+      Status: Active
+      UserName:
+        Ref: User
+
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Ref: Domain
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument:
+          Ref: IndexDocument
+        ErrorDocument:
+          Ref: ErrorDocument
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: Bucket
+      PolicyDocument:
+        Statement:
+          - Principal: "*"
+            Action: "s3:GetObject"
+            Effect: Allow
+            Resource:
+              Fn::Join: [ "", [ { "Fn::GetAtt": [ Bucket, Arn ] }, "/*" ] ]
+
+  BucketRedirect:
+    Type: AWS::S3::Bucket
+    Condition: UseRedirect
+    Properties:
+      BucketName:
+        Ref: RedirectDomain
+      AccessControl: BucketOwnerFullControl
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName:
+            Ref: Domain
+
+  BucketRedirectPolicy:
+    Type: AWS::S3::BucketPolicy
+    Condition: UseRedirect
+    Properties:
+      Bucket:
+        Ref: BucketRedirect
+      PolicyDocument:
+        Statement:
+          - Principal: "*"
+            Action: "s3:GetObject"
+            Effect: Allow
+            Resource:
+              Fn::Join: [ "", [ { "Fn::GetAtt": [ BucketRedirect, Arn ] }, "/*" ] ]
+
+
+Outputs:
+
+  Url:
+    Description: URL for the Website
+    Value: { "Fn::GetAtt": [ Bucket, WebsiteURL ] }
+
+  UrlRedirect:
+    Description: URL for the Website Redirect
+    Condition: UseRedirect
+    Value: { "Fn::GetAtt": [ BucketRedirect, WebsiteURL ] }
+
+  AccessKeyId:
+    Description: AWS_ACCESS_KEY_ID
+    Condition: UseUser
+    Value:
+      Ref: UserAccessKey
+
+  AccessKeySecret:
+    Description: AWS_SECRET_ACCESS_KEY
+    Condition: UseUser
+    Value:
+      Fn::GetAtt: [ UserAccessKey, SecretAccessKey ]
