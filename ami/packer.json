@@ -1,0 +1,31 @@
+{
+  "variables": {
+    "token": "{{env `DIGITALOCEAN_API_TOKEN`}}",
+    "name": "{{env `NAME`}}",
+    "region": "{{env `REGION`}}",
+    "size": "{{env `SIZE`}}",
+    "image": "{{env `IMAGE`}}"
+  },
+  "builders": [{
+    "type": "digitalocean",
+    "ssh_username": "root",
+    "api_token": "{{user `token`}}",
+    "size": "{{user `size`}}",
+    "region": "{{user `region`}}",
+    "image": "{{user `image`}}",
+    "droplet_name": "{{user `name`}}-{{timestamp}}",
+    "snapshot_name": "{{user `name`}}-{{timestamp}}"
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "script": "scripts/before-salt.sh"
+  },{
+    "type": "salt-masterless",
+    "local_state_tree": "salt",
+    "local_pillar_roots": "pillar",
+    "minion_config": "minion/{{user `name`}}"
+  },{
+    "type": "shell",
+    "script": "scripts/after-salt.sh"
+  }]
+}

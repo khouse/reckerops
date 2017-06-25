@@ -19,10 +19,12 @@ services:
       - ./secrets/aws.env
       - ./secrets/cloudflare.env
 
-  ami:
-    container_name: ami
-    image: arecker/reckerops/ami:latest
-    build: ./ami
+  kitchen:
+    container_name: kitchen
+    image: arecker/reckerops/kitchen:latest
+    build:
+      context: ./ami
+      dockerfile: Dockerfile.kitchen
     network_mode: bridge
     env_file:
       - ./secrets/aws.env

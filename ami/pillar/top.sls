@@ -1,4 +1,7 @@
 base:
 
+  '*':
+    - password
+
   'kitchen':
     - kitchen
