@@ -17,8 +17,8 @@ stacks:
     scrabble:
       template: static.yml
 
-    reckerops-vault:
-      template: vault.rb
+    vault:
+      template: vault.yml
 
     wedding:
       template: static.yml
