@@ -96,6 +96,6 @@ sarahrecker.com:
       content: 159.203.69.74
       proxied: true
     - name: scrabble.sarahrecker.com
-      content: stack_output:scrabble:ScrabbleUrl
+      content: stack_output:scrabble:Url
       type: CNAME
       proxied: true
