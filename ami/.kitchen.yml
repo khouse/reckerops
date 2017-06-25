@@ -4,10 +4,10 @@ driver:
   region: us-west-2
   subnet_filter:
     tag: 'Name'
-    value: 'reckerops-build'
+    value: 'build'
   security_group_filter:
     tag: 'Name'
-    value: 'reckerops-build'
+    value: 'build'
   aws_ssh_key_id: reckerops-kitchen
 
 transport:
