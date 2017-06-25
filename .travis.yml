@@ -9,7 +9,7 @@ script:
   - docker-compose build
   - docker-compose run cfn
   - docker-compose run dns
-  - docker-compose run ami
+  - docker-compose run kitchen
 
 notifications:
   email: false
