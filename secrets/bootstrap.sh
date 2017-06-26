@@ -12,6 +12,13 @@ if [ "$1" == "local" ]; then
     KITCHEN_SSH_PRIVATE_KEY="$(pass reckerops/kitchen_ssh_private_key)"
     DIGITALOCEAN_API_TOKEN="$(pass reckerops/digitalocean_api_token)"
     ROOT_PASSWORD_HASH="$(pass reckerops/root_password_hash)"
+    STRONGBADIA_MYSQL_ROOT_PASSWORD="$(pass reckerops/strongbadia/mysql_root_password)"
+    STRONGBADIA_MYSQL_DATABASE="$(pass reckerops/strongbadia/mysql_database)"
+    STRONGBADIA_MYSQL_USER="$(pass reckerops/strongbadia/mysql_user)"
+    STRONGBADIA_MYSQL_PASSWORD="$(pass reckerops/strongbadia/mysql_password)"
+    STRONGBADIA_WORDPRESS_DB_NAME="$(pass reckerops/strongbadia/wordpress_db_name)"
+    STRONGBADIA_WORDPRESS_DB_USER="$(pass reckerops/strongbadia/wordpress_db_user)"
+    STRONGBADIA_WORDPRESS_DB_PASSWORD="$(pass reckerops/strongbadia/wordpress_db_password)"
 fi
 
 # aws.env
@@ -33,3 +40,12 @@ echo "DIGITALOCEAN_API_TOKEN=$DIGITALOCEAN_API_TOKEN" > $HERE/digitalocean.env
 
 # rootpassword.env
 echo "ROOT_PASSWORD_HASH=$ROOT_PASSWORD_HASH" > $HERE/rootpassword.env
+
+# strongbadia.env
+echo "STRONGBADIA_MYSQL_ROOT_PASSWORD=$STRONGBADIA_MYSQL_ROOT_PASSWORD" > $HERE/strongbadia.env
+echo "STRONGBADIA_MYSQL_DATABASE=$STRONGBADIA_MYSQL_DATABASE" >> $HERE/strongbadia.env
+echo "STRONGBADIA_MYSQL_USER=$STRONGBADIA_MYSQL_USER" >> $HERE/strongbadia.env
+echo "STRONGBADIA_MYSQL_PASSWORD=$STRONGBADIA_MYSQL_PASSWORD" >> $HERE/strongbadia.env
+echo "STRONGBADIA_WORDPRESS_DB_NAME=$STRONGBADIA_WORDPRESS_DB_NAME" >> $HERE/strongbadia.env
+echo "STRONGBADIA_WORDPRESS_DB_USER=$STRONGBADIA_WORDPRESS_DB_USER" >> $HERE/strongbadia.env
+echo "STRONGBADIA_WORDPRESS_DB_PASSWORD=$STRONGBADIA_WORDPRESS_DB_PASSWORD" >> $HERE/strongbadia.env
