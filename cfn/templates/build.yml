@@ -211,6 +211,27 @@ Resources:
                   - ec2:DescribeInstances
                   - ec2:TerminateInstances
 
+  LambdaRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: kitchen-cleanup-lambda-rule
+      Description: Run kitchen-cleanup once a day
+      ScheduleExpression: rate(1 day)
+      Targets:
+        - Id: kitchen-cleanup-lambda
+          Arn:
+            Fn::GetAtt: [ Lambda, Arn ]
+
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      FunctionName:
+        Fn::GetAtt: [ Lambda, Arn ]
+      SourceArn:
+        Fn::GetAtt: [ LambdaRule, Arn ]
+
 
 Outputs:
 
