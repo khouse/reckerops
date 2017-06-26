@@ -18,6 +18,12 @@ Parameters:
     Description: Increment to rotate access key for user.
     Default: "0"
 
+  LambdaBucket:
+    Type: String
+
+  LambdaKey:
+    Type: String
+
 
 Resources:
 
@@ -157,6 +163,46 @@ Resources:
       FromPort: "443"
       ToPort: "443"
       IpProtocol: TCP
+
+  Lambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: Cleanup Orphaned Kitchen Test Runners
+      Role:
+        Fn::GetAtt: [ LambdaRole, Arn ]
+      Code:
+        S3Bucket:
+          Ref: LambdaBucket
+        S3Key:
+          Ref: LambdaKey
+      FunctionName: kitchen-cleanup
+      Handler: function.handler
+      Runtime: python2.7
+
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - sts:AssumeRole
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+      Path: /
+      Policies:
+        - PolicyName: BuildLambdaEc2Policy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Resource: "*"
+                Action:
+                  - ec2:CreateTags
+                  - ec2:DescribeInstances
+                  - ec2:TerminateInstances
 
 
 Outputs:
