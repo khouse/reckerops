@@ -1,5 +1,6 @@
 FROM hashicorp/packer
 RUN mkdir /app
+RUN mkdir /secrets
 ADD . /app
 WORKDIR /app
 ENTRYPOINT ["sh", "packer-entry.sh"]

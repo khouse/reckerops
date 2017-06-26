@@ -13,8 +13,8 @@
     "size": "{{user `size`}}",
     "region": "{{user `region`}}",
     "image": "{{user `image`}}",
-    "droplet_name": "reckerops-{{user `name`}}-{{timestamp}}",
-    "snapshot_name": "reckerops-{{user `name`}}"
+    "droplet_name": "{{user `name`}}-{{timestamp}}",
+    "snapshot_name": "{{user `name`}}"
   }],
   "provisioners": [{
     "type": "shell",
@@ -30,6 +30,6 @@
   },{
     "type": "file",
     "source": "../secrets/{{ user `name` }}.env",
-    "destination": "/reckerops/d/docker.env"
+    "destination": "/reckerops/docker/docker.env"
   }]
 }

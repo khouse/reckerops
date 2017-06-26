@@ -46,6 +46,8 @@ services:
       context: ./ami
       dockerfile: Dockerfile.packer
     network_mode: bridge
+    volumes:
+      - ./secrets/strongbadia.env:/secrets/strongbadia.env:ro
     environment:
       - PACKER_NAME=strongbadia
       - PACKER_REGION=AMS3
