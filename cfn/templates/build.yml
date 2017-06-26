@@ -47,6 +47,13 @@ Resources:
               - Effect: Allow
                 Resource: "*"
                 Action: "ec2:*"
+        - PolicyName: BuildS3Policy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Resource: "*"
+                Action: "s3:*"
 
   UserAccessKey:
     Type: AWS::IAM::AccessKey

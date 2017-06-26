@@ -2,6 +2,14 @@ version: '2'
 
 services:
 
+  lambda:
+    container_name: lambda
+    image: arecker/reckerops/lambda:latest
+    build: ./lambda
+    network_mode: bridge
+    env_file:
+      - ./secrets/aws.env
+
   cfn:
     container_name: cfn
     image: arecker/reckerops/cfn:latest
