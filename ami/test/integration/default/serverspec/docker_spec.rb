@@ -17,6 +17,7 @@ describe 'docker' do
   end
 
   it 'should be configured' do
-    expect(file('/reckerops/docker-compose.yml')).to exist
+    expect(file('/reckerops/docker/docker-compose.yml')).to exist
+    expect(file('/reckerops/docker/configs')).to be_directory
   end
 end

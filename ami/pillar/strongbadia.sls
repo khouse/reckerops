@@ -12,6 +12,7 @@ compose:
   version: '2'
   services:
     db:
+      container_name: db
       image: mysql
       restart: always
       network_mode: bridge
@@ -22,6 +23,7 @@ compose:
       env_file:
         - ./docker.env
     wp:
+      container_name: wp
       depends_on: [ db ]
       image: wordpress:latest
       restart: always

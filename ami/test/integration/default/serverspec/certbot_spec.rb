@@ -12,7 +12,7 @@ describe 'certbot' do
   end
 
   it 'should be scheduled' do
-    expect(file('/reckerops/certbot-renew.sh')).to exist
-    expect(cron).to have_entry '0 1 * * sun /reckerops/certbot-renew.sh'
+    expect(file('/reckerops/bin/certbot-renew.sh')).to exist
+    expect(cron).to have_entry '0 1 * * sun /reckerops/bin/certbot-renew.sh'
   end
 end

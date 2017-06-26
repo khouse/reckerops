@@ -14,7 +14,7 @@ certbot-installed:
 
 certbot-renew-script-created:
   file.managed:
-    - name: /reckerops/certbot-renew.sh
+    - name: /reckerops/bin/certbot-renew.sh
     - source: salt://certbot/renew.sh
     - makedirs: True
     - user: root
@@ -23,7 +23,7 @@ certbot-renew-script-created:
 
 certbot-renew-cron-installed:
   cron.present:
-    - name: /reckerops/certbot-renew.sh
+    - name: /reckerops/bin/certbot-renew.sh
     - user: root
     - minute: 0
     - hour: 1
