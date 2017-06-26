@@ -7,7 +7,7 @@ before_install: secrets/bootstrap.sh
 
 script:
   - docker-compose build
-  - docker-compoes run lambda
+  - docker-compose run lambda
   - docker-compose run cfn
   - docker-compose run dns
   - docker-compose run kitchen
