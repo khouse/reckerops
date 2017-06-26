@@ -5,3 +5,6 @@ base:
 
   'kitchen':
     - kitchen
+
+  'strongbadia':
+    - strongbadia

@@ -79,7 +79,6 @@ http {
         server_name _;
         root {{ webroot }}default;
 
-        # Status for datadog
         location /nginx_status {
             allow 127.0.0.1;
             deny all;
