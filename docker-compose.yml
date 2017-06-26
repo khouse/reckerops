@@ -38,3 +38,19 @@ services:
       - ./secrets/aws.env
     volumes:
       - ./secrets/kitchen.pem:/kitchen.pem:ro
+
+  strongbadia:
+    container_name: strongbadia
+    image: arecker/reckerops/packer:latest
+    build:
+      context: ./ami
+      dockerfile: Dockerfile.packer
+    network_mode: bridge
+    environment:
+      - PACKER_NAME=strongbadia
+      - PACKER_REGION=AMS3
+      - PACKER_SIZE=512MB
+      - PACKER_IMAGE=debian-8-x64
+    env_file:
+      - ./secrets/digitalocean.env
+      - ./secrets/rootpassword.env

@@ -10,6 +10,8 @@ if [ "$1" == "local" ]; then
     AWS_SECRET_ACCESS_KEY="$(pass reckerops/aws_secret_access_key)"
     CLOUDFLARE_API_KEY="$(pass reckerops/cloudflare_api_key)"
     KITCHEN_SSH_PRIVATE_KEY="$(pass reckerops/kitchen_ssh_private_key)"
+    DIGITALOCEAN_API_TOKEN="$(pass reckerops/digitalocean_api_token)"
+    ROOT_PASSWORD_HASH="$(pass reckerops/root_password_hash)"
 fi
 
 # aws.env
@@ -25,3 +27,9 @@ echo "CLOUDFLARE_EMAIL=alex@reckerfamily.com" >> $HERE/cloudflare.env
 echo '-----BEGIN RSA PRIVATE KEY-----' > $HERE/kitchen.pem
 echo $KITCHEN_SSH_PRIVATE_KEY | fold -w 72 >> $HERE/kitchen.pem
 echo '-----END RSA PRIVATE KEY-----' >> $HERE/kitchen.pem
+
+# digitalocean.env
+echo "DIGITALOCEAN_API_TOKEN=$DIGITALOCEAN_API_TOKEN" > $HERE/digitalocean.env
+
+# rootpassword.env
+echo "ROOT_PASSWORD_HASH=$ROOT_PASSWORD_HASH" > $HERE/rootpassword.env

@@ -1,10 +1,10 @@
 {
   "variables": {
     "token": "{{env `DIGITALOCEAN_API_TOKEN`}}",
-    "name": "{{env `NAME`}}",
-    "region": "{{env `REGION`}}",
-    "size": "{{env `SIZE`}}",
-    "image": "{{env `IMAGE`}}"
+    "name": "{{env `PACKER_NAME`}}",
+    "region": "{{env `PACKER_REGION`}}",
+    "size": "{{env `PACKER_SIZE`}}",
+    "image": "{{env `PACKER_IMAGE`}}"
   },
   "builders": [{
     "type": "digitalocean",
@@ -13,8 +13,8 @@
     "size": "{{user `size`}}",
     "region": "{{user `region`}}",
     "image": "{{user `image`}}",
-    "droplet_name": "{{user `name`}}-{{timestamp}}",
-    "snapshot_name": "{{user `name`}}-{{timestamp}}"
+    "droplet_name": "reckerops-{{user `name`}}",
+    "snapshot_name": "reckerops-{{user `name`}}"
   }],
   "provisioners": [{
     "type": "shell",
