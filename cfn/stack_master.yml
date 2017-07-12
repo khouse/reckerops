@@ -17,6 +17,9 @@ stacks:
     scrabble:
       template: static.yml
 
+    tranquility:
+      template: tranquility.yml
+
     vault:
       template: vault.yml
 
