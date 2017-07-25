@@ -28,6 +28,9 @@ alexrecker.com:
     - name: test.alexrecker.com
       content: 8.8.8.8
       proxied: True
+    - name: vault.alexrecker.com
+      content: 35.188.161.130
+      proxied: False
 
 astuaryart.com:
   id: a38f74181d6960fb8897e22cec4ee9f4
