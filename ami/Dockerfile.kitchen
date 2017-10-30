@@ -1,2 +1,0 @@
-FROM ruby:onbuild
-ENTRYPOINT ["/usr/src/app/kitchen-entry.sh"]

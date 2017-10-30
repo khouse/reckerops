@@ -1,7 +1,0 @@
-{% set ssh = salt['grains.filter_by']({
-  'default': {
-    'package': 'openssh-server',
-    'service': 'sshd',
-    'config': '/etc/ssh/sshd_config'
-  }
-}, merge=salt['pillar.get']('ssh:lookup'), base='default', grain='oscodename') %}

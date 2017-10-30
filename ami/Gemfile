@@ -1,5 +1,0 @@
-source 'https://rubygems.org'
-
-gem 'kitchen-ec2'
-gem 'kitchen-salt', git: 'https://github.com/arecker/kitchen-salt.git'
-gem 'test-kitchen'

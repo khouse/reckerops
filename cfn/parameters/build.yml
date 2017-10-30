@@ -1,3 +1,0 @@
-lambda_bucket:
-  stack_output: lambda/bucket_name
-lambda_key: kitchen_cleanup.zip
