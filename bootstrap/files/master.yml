@@ -1,0 +1,7 @@
+fileserver_backend:
+  - git
+
+gitfs_provider: gitpython
+gitfs_remotes:
+  - https://github.com/arecker/reckerops.git:
+    - root: salt
