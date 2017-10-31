@@ -3,8 +3,12 @@ base:
   '*':
     - locale
 
-  'role:(worker|master)':
-    - match: grain_pcr
+  'role:master':
+    - match: grain
+    - docker
+
+  'role:worker':
+    - match: grain
     - docker
 
   'role:proxy':
