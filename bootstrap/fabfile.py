@@ -25,7 +25,7 @@ def master():
     run('systemctl restart salt-master')
 
 
-def minion(master_host='salt.alexrecker.com', worker=True, proxy=False, master=False):
+def minion(master_host='saltmaster.alexrecker.com', worker=True, proxy=False, master=False):
 
     """Configure a minion"""
 

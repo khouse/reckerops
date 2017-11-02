@@ -2,7 +2,6 @@ base:
 
   '*':
     - locale
-    - hosts
 
   'role:master':
     - match: grain
