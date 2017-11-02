@@ -2,6 +2,7 @@ base:
 
   '*':
     - locale
+    - hosts
 
   'role:master':
     - match: grain
@@ -10,8 +11,3 @@ base:
   'role:worker':
     - match: grain
     - docker
-
-  'role:proxy':
-    - match: grain
-    - letsencrypt
-    - nginx

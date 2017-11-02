@@ -6,6 +6,8 @@ docker-dependencies-installed:
       - curl
       - gnupg2
       - software-properties-common
+    - require_in:
+      - pkgrepo: docker-repo-added
 
 docker-repo-added:
   pkgrepo.managed:

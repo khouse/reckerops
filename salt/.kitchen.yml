@@ -23,10 +23,3 @@ suites:
         base:
           '*':
             - docker
-  - name: letsencrypt
-    provisioner:
-      formula: letsencrypt
-      state_top:
-        base:
-          '*':
-            - letsencrypt
