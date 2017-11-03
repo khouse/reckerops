@@ -1,4 +1,0 @@
-master: {{ master }}
-
-grains:
-  {% if roles %}role: [ {{ roles | join(',')}} ]{% endif %}
