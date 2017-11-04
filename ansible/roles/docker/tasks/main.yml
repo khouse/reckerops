@@ -1,0 +1,22 @@
+- name: install dependencies
+  package: name={{ item }} state=latest
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+
+- name: install key
+  apt_key: url=https://download.docker.com/linux/debian/gpg state=present
+
+- name: add source
+  lineinfile:
+    dest: /etc/apt/sources.list
+    line: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
+
+- name: install package
+  package: name=docker-ce state=latest
+
+- name: start service
+  service: name=docker state=started enabled=yes

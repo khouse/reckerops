@@ -1,0 +1,6 @@
+[masters]
+deepthought-0
+
+[workers]
+deepthought-1
+deepthought-2
