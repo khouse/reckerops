@@ -1,3 +1,6 @@
+[proxies]
+deepthought-proxy
+
 [masters]
 deepthought-0
 

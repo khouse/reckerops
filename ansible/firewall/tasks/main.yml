@@ -1,0 +1,2 @@
+- name: install ufw
+  package: name=ufw state=latest

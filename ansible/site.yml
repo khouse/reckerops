@@ -1,3 +1,7 @@
+- hosts: all
+  roles:
+    - firewall
+
 - hosts: masters
   roles:
     - docker
