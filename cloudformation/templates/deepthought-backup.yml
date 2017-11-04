@@ -1,0 +1,38 @@
+Parameters:
+  BucketName:
+    Type: String
+    Default: reckerops-deepthought-backup
+  UserName:
+    Type: String
+    Default: reckerops-deepthought-backup-user
+  ExpireAge:
+    Type: String
+    Default: '30'
+
+Resources:
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName:
+        Ref: BucketName
+      LifecycleConfiguration:
+        Rules:
+          - Status: Enabled
+            ExpirationInDays:
+              Ref: ExpireAge
+
+  User:
+    Type: AWS::IAM::User
+    Properties:
+      UserName:
+        Ref: UserName
+      Policies:
+        - PolicyName: PublishPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "s3:PutObject"
+                Resource:
+                  Fn::Join: [ "", [ { "Fn::GetAtt": [ Bucket, Arn ] }, "/*" ] ]

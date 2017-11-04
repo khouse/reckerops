@@ -1,6 +1,9 @@
 version: '3'
 
 services:
+  backup:
+    build: ./backup
+    image: arecker/backup:latest
   wordpress:
     build: ./wordpress
     image: arecker/wordpress:latest
