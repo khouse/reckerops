@@ -1,0 +1,13 @@
+- name: install nfs
+  package: name=nfs-kernel-server state=latest
+
+- name: create share directory
+  file: path=/data state=directory owner=nobody group=nogroup
+
+- name: configure exports
+  template:
+    src: exports.jinja2
+    dest: /etc/exports
+
+- name: start service
+  service: name=nfs-kernel-server state=started enabled=yes

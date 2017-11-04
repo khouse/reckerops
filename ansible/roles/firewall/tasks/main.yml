@@ -1,2 +1,41 @@
 - name: install ufw
   package: name=ufw state=latest
+
+- name: allow from localhost
+  ufw: rule=allow src=127.0.0.1
+
+- name: allow all ssh
+  ufw: rule=allow port=ssh
+
+- name: allow from masters
+  ufw: rule=allow src="{{ item }}"
+  with_items:
+    - 192.155.82.135
+
+- name: allow from workers
+  ufw: rule=allow src="{{ item }}"
+  with_items:
+    - 45.33.61.211
+    - 173.230.148.165
+
+- name: allow from proxies
+  ufw: rule=allow src="{{ item }}"
+  with_items:
+    - 35.199.177.80
+
+- name: allow all http
+  ufw: rule=allow port=http
+  when: public
+
+- name: allow all https
+  ufw: rule=allow port=https
+  when: public
+
+- name: drop incoming by default
+  ufw: policy=deny direction=incoming
+
+- name: allow outgoing by default
+  ufw: policy=allow direction=outgoing
+
+- name: enable
+  ufw: state=enabled
