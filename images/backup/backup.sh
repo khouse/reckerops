@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 : "${BUCKET_NAME?Need to set BUCKET_NAME}"
 : "${AWS_REGION?Need to set AWS_REGION}"
@@ -7,10 +7,15 @@
 
 timestamp="$(date +%s)"
 
-cd /data || exit
+cd /data || exit 1
 
 for key in *; do
     target="$key-$timestamp.tar.gz"
+    destination="s3://${BUCKET_NAME}/${key}/${target}"
+
+    echo "Compressing $key to $target"
     tar -zpcvf "$target" "$key"
-    aws s3 cp "$target" "s3://${BUCKET_NAME}/${key}/${target}" && rm "$target"
+
+    echo "Copying $target to $destination"
+    aws s3 cp "$target" "$destination" && rm "$target"
 done
